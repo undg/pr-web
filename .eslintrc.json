@@ -50,10 +50,19 @@
 			}
 		],
 		"no-void": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/init-declarations": "off",
+		"@typescript-eslint/member-ordering": "off",
+		"@typescript-eslint/no-implicit-any-catch": "off",
+		"@typescript-eslint/no-restricted-imports": "off",
+		"@typescript-eslint/non-nullable-type-assertion-style": "off",
 		"@typescript-eslint/padding-line-between-statements": "off",
 		"@typescript-eslint/prefer-enum-initializers": "off",
+		"@typescript-eslint/prefer-includes": "off",
 		"@typescript-eslint/prefer-readonly-parameter-types": "off",
 		"@typescript-eslint/prefer-regexp-exec": "off",
+		"@typescript-eslint/strict-boolean-expressions": "off",
 		"@typescript-eslint/no-magic-numbers": [
 			"error",
 			{
@@ -63,23 +72,15 @@
 				"detectObjects": true
 			}
 		],
-		"@typescript-eslint/explicit-module-boundary-types": "off",
-		"@typescript-eslint/init-declarations": "off",
 		"@typescript-eslint/no-confusing-void-expression": [
 			"error",
 			{
 				"ignoreArrowShorthand": true
 			}
 		],
-		"@typescript-eslint/non-nullable-type-assertion-style": "off",
-		"@typescript-eslint/strict-boolean-expressions": "off",
-		"@typescript-eslint/no-implicit-any-catch": "off",
-		"@typescript-eslint/member-ordering": "off",
-		"@typescript-eslint/prefer-includes": "off",
-		"@typescript-eslint/no-restricted-imports": "off",
-		"@typescript-eslint/explicit-function-return-type": "off",
-		"import/no-deprecated": "error",
+		"import/prefer-default-export": "off",
 		"import/order": "off",
+		"import/no-deprecated": "error",
 		"import/no-extraneous-dependencies": [
 			"error",
 			{
@@ -93,6 +94,7 @@
 				]
 			}
 		],
+		"react/jsx-props-no-spreading": "off",
 		"react/no-did-update-set-state": "off",
 		"react/no-find-dom-node": "off",
 		"react/no-is-mounted": "off",
@@ -100,10 +102,11 @@
 		"react/no-render-return-value": "off",
 		"react/no-string-refs": "off",
 		"react/no-this-in-sfc": "off",
+		"react/no-unused-state": "off",
 		"react/no-will-update-set-state": "off",
 		"react/prefer-es6-class": "off",
-		"react/no-unused-state": "off",
 		"react/prefer-stateless-function": "off",
+		"react/require-default-props": "off",
 		"react/require-render-return": "off",
 		"react/sort-comp": "off",
 		"react/state-in-constructor": "off",
@@ -144,6 +147,8 @@
 		"react/jsx-no-constructed-context-values": "error",
 		"react/jsx-no-script-url": "error",
 		"react/jsx-no-useless-fragment": "error",
+		"unicorn/no-keyword-prefix": "off",
+		"unicorn/prevent-abbreviations": "off",
 		"unicorn/filename-case": [
 			"error",
 			{
