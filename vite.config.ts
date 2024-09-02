@@ -7,57 +7,57 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import path from 'node:path'
 
 export default defineConfig(({ mode }) => ({
-	test: {
-		css: false,
-		include: ['**/*.test.{ts,tsx}'],
-		globals: true,
-		environment: 'jsdom',
-		setupFiles: 'src/setup-tests.ts',
-		clearMocks: true,
-		coverage: {
-			include: ['src/**/*'],
-			exclude: ['src/main.tsx'],
-			thresholds: {
-				'100': true,
-			},
-			provider: 'istanbul',
-			enabled: true,
-			reporter: ['text', 'lcov'],
-			reportsDirectory: 'coverage',
-		},
-	},
-	resolve: {
-		alias: {
-			'@': path.resolve(new URL('src', import.meta.url).toString()),
-		},
-	},
-	plugins: [
-		tsconfigPaths(),
-		react(),
-		...(mode === 'test'
-			? []
-			: [
-					eslintPlugin(),
-					VitePWA({
-						registerType: 'autoUpdate',
-						includeAssets: ['favicon.png', 'robots.txt', 'apple-touch-icon.png', 'icons/*.svg', 'fonts/*.woff2'],
-						manifest: {
-							theme_color: '#BD34FE',
-							icons: [
-								{
-									src: '/android-chrome-192x192.png',
-									sizes: '192x192',
-									type: 'image/png',
-									purpose: 'any maskable',
-								},
-								{
-									src: '/android-chrome-512x512.png',
-									sizes: '512x512',
-									type: 'image/png',
-								},
-							],
-						},
-					}),
-				]),
-	],
+  test: {
+    css: false,
+    include: ['**/*.test.{ts,tsx}'],
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: 'src/setup-tests.ts',
+    clearMocks: true,
+    coverage: {
+      include: ['src/**/*'],
+      exclude: ['src/main.tsx'],
+      thresholds: {
+        '100': true,
+      },
+      provider: 'istanbul',
+      enabled: true,
+      reporter: ['text', 'lcov'],
+      reportsDirectory: 'coverage',
+    },
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(new URL('src', import.meta.url).toString()),
+    },
+  },
+  plugins: [
+    tsconfigPaths(),
+    react(),
+    ...(mode === 'test'
+      ? []
+      : [
+          eslintPlugin(),
+          VitePWA({
+            registerType: 'autoUpdate',
+            includeAssets: ['favicon.png', 'robots.txt', 'apple-touch-icon.png', 'icons/*.svg', 'fonts/*.woff2'],
+            manifest: {
+              theme_color: '#BD34FE',
+              icons: [
+                {
+                  src: '/android-chrome-192x192.png',
+                  sizes: '192x192',
+                  type: 'image/png',
+                  purpose: 'any maskable',
+                },
+                {
+                  src: '/android-chrome-512x512.png',
+                  sizes: '512x512',
+                  type: 'image/png',
+                },
+              ],
+            },
+          }),
+        ]),
+  ],
 }))

@@ -1,16 +1,13 @@
 import { useEffect } from 'react'
 
 interface Properties {
-	title: string
+  title: string
 }
 
-const projectName = 'Pulse Remote'
+export default function Head({ title }: Properties) {
+  useEffect(() => {
+    document.title = title
+  }, [title])
 
-export default function Head({ title }: Properties): null {
-	useEffect(() => {
-		document.title = `${projectName}: ${title}`
-	}, [title])
-
-	// eslint-disable-next-line unicorn/no-null
-	return null
+  return <h1>{title}</h1>
 }
