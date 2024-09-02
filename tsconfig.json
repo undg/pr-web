@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
 		"baseUrl": "src",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
 		"jsx": "react-jsx",
@@ -16,5 +19,9 @@
 		"types": ["vite/client", "vitest/globals", "vite-plugin-pwa/client"]
 	},
 	"include": ["src"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		}
+	]
 }

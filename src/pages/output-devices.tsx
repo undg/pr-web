@@ -1,6 +1,7 @@
 import Head from 'components/head'
 import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import { Button } from 's/components/ui/button'
 
 const pageTitle = 'Output Devices'
 export default function OutputDevices(): ReactElement {
@@ -10,7 +11,7 @@ export default function OutputDevices(): ReactElement {
 			<div>
 				<h2>{pageTitle}</h2>
 				<Link to='/web/input' data-testid='goto-input'>
-					Input Devices
+					<Button>Input Devices</Button>
 				</Link>
 			</div>
 		</>
