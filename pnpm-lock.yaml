@@ -167,6 +167,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: 0.5.13
         version: 0.5.13(prettier@3.2.5)
+      react-use-websocket:
+        specifier: 4.8.1
+        version: 4.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       start-server-and-test:
         specifier: 2.0.3
         version: 2.0.3
@@ -5063,6 +5066,13 @@ packages:
     engines: { node: '>=14.0.0' }
     peerDependencies:
       react: '>=16.8'
+
+  react-use-websocket@4.8.1:
+    resolution:
+      { integrity: sha512-FTXuG5O+LFozmu1BRfrzl7UIQngECvGJmL7BHsK4TYXuVt+mCizVA8lT0hGSIF0Z0TedF7bOo1nRzOUdginhDw== }
+    peerDependencies:
+      react: '>= 18.0.0'
+      react-dom: '>= 18.0.0'
 
   react@18.2.0:
     resolution:
@@ -10833,6 +10843,11 @@ snapshots:
     dependencies:
       '@remix-run/router': 1.15.3
       react: 18.2.0
+
+  react-use-websocket@4.8.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   react@18.2.0:
     dependencies:
