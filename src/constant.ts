@@ -8,4 +8,4 @@ export const ABOUT_HEAD_NAME = `${APP_NAME}: About` as const
 export const MIN_VOLUME = 0
 export const MAX_VOLUME = 150
 
-export const WEBSOCKET_URL = 'localhost:8448/ws'
+export const WEBSOCKET_URL = 'http://localhost:8448/api/v1/ws'
