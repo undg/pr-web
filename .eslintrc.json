@@ -103,6 +103,7 @@
     "react/no-render-return-value": "off",
     "react/no-string-refs": "off",
     "react/no-this-in-sfc": "off",
+    "react/no-unescaped-entities": "off",
     "react/no-unused-state": "off",
     "react/no-will-update-set-state": "off",
     "react/prefer-es6-class": "off",
