@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import tsconfigPaths from 'vite-tsconfig-paths'
-// import path from 'node:path'
+import path from 'node:path'
 
 export default defineConfig(({ mode }) => ({
 	test: {
@@ -18,19 +18,19 @@ export default defineConfig(({ mode }) => ({
 			include: ['src/**/*'],
 			exclude: ['src/main.tsx'],
 			thresholds: {
-				'100': true
+				'100': true,
 			},
 			provider: 'istanbul',
 			enabled: true,
 			reporter: ['text', 'lcov'],
-			reportsDirectory: 'coverage'
-		}
+			reportsDirectory: 'coverage',
+		},
 	},
-	// resolve: {
-	// 	alias: {
-	// 		'@': path.resolve(new URL('src', import.meta.url).toString())
-	// 	}
-	// },
+	resolve: {
+		alias: {
+			'@': path.resolve(new URL('src', import.meta.url).toString()),
+		},
+	},
 	plugins: [
 		tsconfigPaths(),
 		react(),
@@ -40,13 +40,7 @@ export default defineConfig(({ mode }) => ({
 					eslintPlugin(),
 					VitePWA({
 						registerType: 'autoUpdate',
-						includeAssets: [
-							'favicon.png',
-							'robots.txt',
-							'apple-touch-icon.png',
-							'icons/*.svg',
-							'fonts/*.woff2'
-						],
+						includeAssets: ['favicon.png', 'robots.txt', 'apple-touch-icon.png', 'icons/*.svg', 'fonts/*.woff2'],
 						manifest: {
 							theme_color: '#BD34FE',
 							icons: [
@@ -54,16 +48,16 @@ export default defineConfig(({ mode }) => ({
 									src: '/android-chrome-192x192.png',
 									sizes: '192x192',
 									type: 'image/png',
-									purpose: 'any maskable'
+									purpose: 'any maskable',
 								},
 								{
 									src: '/android-chrome-512x512.png',
 									sizes: '512x512',
-									type: 'image/png'
-								}
-							]
-						}
-					})
-				])
-	]
+									type: 'image/png',
+								},
+							],
+						},
+					}),
+				]),
+	],
 }))
