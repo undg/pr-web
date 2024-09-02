@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { render } from '@testing-library/react'
+import { render, waitFor, screen } from '@testing-library/react'
 import type { PropsWithChildren, ReactElement } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
@@ -18,7 +18,7 @@ export const DESKTOP_RESOLUTION_HEIGHT = 800
 export const MOBILE_RESOLUTION_WIDTH = 414
 export const MOBILE_RESOLUTION_HEIGHT = 896
 
-export default function renderWithProviders(
+export function renderWithProviders(
 	ui: ReactElement,
 	includeRouter = true
 ): void {
@@ -29,4 +29,10 @@ export default function renderWithProviders(
 			</QueryClientProvider>
 		)
 	})
+}
+
+export async function waitForLoad() {
+	await waitFor(() =>
+		expect(screen.queryByTestId('loading-or-error')).not.toBeInTheDocument()
+	)
 }

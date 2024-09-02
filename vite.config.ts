@@ -8,10 +8,10 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig(({ mode }) => ({
 	test: {
 		css: false,
-		include: ['src/**/__tests__/*'],
+		include: ['**/*.test.{ts,tsx}'],
 		globals: true,
 		environment: 'jsdom',
-		setupFiles: 'src/setupTests.ts',
+		setupFiles: 'src/setup-tests.ts',
 		clearMocks: true,
 		coverage: {
 			include: ['src/**/*'],
@@ -58,6 +58,6 @@ export default defineConfig(({ mode }) => ({
 							]
 						}
 					})
-			  ])
+				])
 	]
 }))

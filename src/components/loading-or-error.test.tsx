@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import LoadingOrError from '../LoadingOrError'
+import LoadingOrError from './loading-or-error'
 
 describe('<LoadingOrError />', () => {
 	it('renders', () => {
