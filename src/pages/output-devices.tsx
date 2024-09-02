@@ -1,7 +1,7 @@
 import Head from 'components/head'
 import type { ReactElement } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 's/components/ui/button'
+import { Button } from 'shadcn/components/ui/button'
 
 const pageTitle = 'Output Devices'
 export default function OutputDevices(): ReactElement {
