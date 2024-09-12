@@ -56,7 +56,9 @@
     "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/no-implicit-any-catch": "off",
+    "@typescript-eslint/no-magic-numbers": "off",
     "@typescript-eslint/no-restricted-imports": "off",
+    "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/non-nullable-type-assertion-style": "off",
     "@typescript-eslint/padding-line-between-statements": "off",
     "@typescript-eslint/prefer-enum-initializers": "off",
@@ -65,15 +67,6 @@
     "@typescript-eslint/prefer-regexp-exec": "off",
     "@typescript-eslint/sort-type-constituents": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-magic-numbers": [
-      "error",
-      {
-        "ignoreEnums": true,
-        "ignore": [0],
-        "enforceConst": true,
-        "detectObjects": true
-      }
-    ],
     "@typescript-eslint/no-confusing-void-expression": [
       "error",
       {
@@ -106,7 +99,6 @@
     "react/no-render-return-value": "off",
     "react/no-string-refs": "off",
     "react/no-this-in-sfc": "off",
-    "react/no-unescaped-entities": "off",
     "react/no-unescaped-entities": "off",
     "react/no-unused-state": "off",
     "react/no-will-update-set-state": "off",
