@@ -50,6 +50,7 @@
       }
     ],
     "no-void": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/init-declarations": "off",
@@ -144,6 +145,7 @@
     "react/jsx-no-script-url": "error",
     "react/jsx-no-useless-fragment": "error",
     "unicorn/no-keyword-prefix": "off",
+    "unicorn/no-null": "off",
     "unicorn/prefer-spread": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/filename-case": [
