@@ -1,9 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import App from 'app'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { registerSW } from 'virtual:pwa-register'
 import './index.css'
+import { useAtomsDebugValue } from 'jotai-devtools'
 
 registerSW()
 
@@ -17,12 +18,18 @@ const queryClient = new QueryClient({
   },
 })
 
+function DebugAtoms() {
+  useAtomsDebugValue()
+  return null
+}
+
 const container = document.querySelector('#root')
 if (container) {
   const root = createRoot(container)
   root.render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
+        <DebugAtoms />
         <App />
       </QueryClientProvider>
     </StrictMode>,
