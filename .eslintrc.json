@@ -129,15 +129,6 @@
       }
     ],
     "react/no-unstable-nested-components": "error",
-    "react/jsx-handler-names": [
-      "error",
-      {
-        "eventHandlerPrefix": "on",
-        "eventHandlerPropPrefix": "on",
-        "checkLocalVariables": true,
-        "checkInlineFunction": true
-      }
-    ],
     "react/jsx-key": "error",
     "react/jsx-no-bind": [
       "error",
