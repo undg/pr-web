@@ -11,4 +11,4 @@ export const MIN_VOLUME = 0
 export const MAX_VOLUME = 1.5
 
 // @TODO (undg) 2024-09-12: move it to config
-export const WEBSOCKET_URL = 'ws://localhost:8448/api/v1/ws'
+export const WEBSOCKET_URL = 'ws://192.168.1.10:8448/api/v1/ws'
