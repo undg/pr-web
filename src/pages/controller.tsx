@@ -2,28 +2,13 @@ import { Button } from 'components/button'
 import Head from 'components/head'
 import { Slider } from 'components/slider'
 import { CONTROLLER_HEAD_TITLE, MAX_VOLUME, MIN_VOLUME } from 'constant'
-import { useEffect, type ReactElement, useCallback, useState } from 'react'
+import { useEffect, type ReactElement, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useWebSocketApi } from 'api/use-web-socket-api'
+import { useDebounce } from 'hooks/use-debounce'
 
 import { atom, useAtom } from 'jotai'
 import { useAtomDevtools } from 'jotai-devtools'
-
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value)
-    }, delay)
-
-    return () => {
-      clearTimeout(handler)
-    }
-  }, [value, delay])
-
-  return debouncedValue
-}
 
 export const volumeAtom = atom<number | null>(null)
 if (process.env.NODE_ENV !== 'production') {
@@ -68,20 +53,28 @@ export default function Controller(): ReactElement {
   )
 
   return (
-    <div>
+    <div className='container mx-auto p-4'>
       <Head title={CONTROLLER_HEAD_TITLE} />
-      <Link to='/web/about' data-testid='goto-about'>
-        <Button>About</Button>
-      </Link>
-      <Slider
-        title='Volume'
-        min={MIN_VOLUME}
-        max={MAX_VOLUME}
-        value={[volume ?? 0]}
-        step={0.01}
-        onValueChange={handleVolumeChange}
-      />
-      <Button onClick={handleRefresh}>Refresh</Button>
+      <nav className='mb-8 flex justify-end gap-4'>
+        <Link to='/web/about' data-testid='goto-about'>
+          <Button variant='secondary'>About</Button>
+        </Link>
+        <Button onClick={handleRefresh} variant='secondary'>
+          Refresh
+        </Button>
+      </nav>
+      <main>
+        <section className='mb-8'>
+          <Slider
+            title='Volume'
+            min={MIN_VOLUME}
+            max={MAX_VOLUME}
+            value={[volume ?? 0]}
+            step={0.01}
+            onValueChange={handleVolumeChange}
+          />
+        </section>
+      </main>
     </div>
   )
 }
