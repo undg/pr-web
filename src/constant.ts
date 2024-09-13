@@ -10,5 +10,5 @@ export const MIN_VOLUME = 0
  */
 export const MAX_VOLUME = 1.5
 
-// @TODO (undg) 2024-09-12: move it to config
-export const WEBSOCKET_URL = 'ws://192.168.1.10:8448/api/v1/ws'
+// @TODO (undg) 2024-09-12: MOVE IT TO CONFIG, or scan for the device
+export const WEBSOCKET_URL = 'ws://192.168.1.110:8448/api/v1/ws'

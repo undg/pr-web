@@ -71,6 +71,7 @@ export default function Controller(): ReactElement {
             max={MAX_VOLUME}
             value={[volume ?? 0]}
             step={0.01}
+            onInput={console.log}
             onValueChange={handleVolumeChange}
           />
         </section>
