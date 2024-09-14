@@ -1,12 +1,12 @@
 import Head from 'components/head'
 import { TopNav } from 'components/top-nav'
-import { ABOUT_HEAD_NAME as ABOUT_HEAD_TITLE } from 'constant'
+import { dict } from 'constant'
 import type { ReactElement } from 'react'
 
 export default function About(): ReactElement {
   return (
     <div>
-      <Head title={ABOUT_HEAD_TITLE} />
+      <Head title={dict.headerAbout} />
       <TopNav />
 
       <section>

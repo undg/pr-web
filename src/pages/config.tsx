@@ -5,16 +5,22 @@ import { dict } from 'constant'
 import type { FC } from 'react'
 
 export const Config: FC = () => {
-  const [config] = useConfig()
+  const [config, updateConfig] = useConfig()
+  const handleChange = (type: keyof typeof config) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateConfig({ [type]: e.currentTarget.value })
+  }
+
   return (
     <div>
       <Head title={dict.headerConfig} />
       <TopNav />
-      <div>Config</div>
-      <div>{config.host}</div>
-      <div>{config.port}</div>
-      <div>{config.endpoint}</div>
-      <div>{config.serverUrl}</div>
+      <div>
+        <div>Config</div>
+        <input value={config.host} onChange={handleChange('host')} />
+        <input value={config.port} onChange={handleChange('port')} />
+        <input value={config.endpoint} onChange={handleChange('endpoint')} />
+        <div>{config.serverUrl}</div>
+      </div>
     </div>
   )
 }

@@ -5,9 +5,6 @@ export const MIN_VOLUME = 0
  */
 export const MAX_VOLUME = 1.5
 
-// @TODO (undg) 2024-09-12: MOVE IT TO CONFIG, or scan for the device
-export const WEBSOCKET_URL = 'ws://192.168.1.110:8448/api/v1/ws'
-
 export const APP_NAME = 'Pulse Remote'
 
 export const CONTROLLER_OUTPUT_HEAD_TITLE = `${APP_NAME}: Output Devices` as const

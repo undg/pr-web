@@ -1,4 +1,4 @@
-import { WEBSOCKET_URL } from 'constant'
+import { useConfig } from 'config/use-config'
 import { useCallback, useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 
@@ -15,12 +15,13 @@ type ConnectionStatus = (typeof connectionStatus)[keyof typeof connectionStatus]
 export const useWebSocketApi = () => {
   const [messageHistory, setMessageHistory] = useState<MessageEvent[]>([])
   const [status, setStatus] = useState<ConnectionStatus>('Closed')
+  const [config] = useConfig()
 
   const {
     lastMessage,
     readyState,
     sendMessage: sendMessageWs,
-  } = useWebSocket(WEBSOCKET_URL, {
+  } = useWebSocket(config.serverUrl, {
     shouldReconnect: () => true,
     reconnectInterval: 1000,
   })
