@@ -1,6 +1,7 @@
 export const APP_NAME = 'Pulse Remote'
 
-export const CONTROLLER_HEAD_TITLE = `${APP_NAME}: Controller` as const
+export const CONTROLLER_OUTPUT_HEAD_TITLE = `${APP_NAME}: Output Devices` as const
+export const CONTROLLER_INPUT_HEAD_TITLE = `${APP_NAME}: Input Devices` as const
 export const ABOUT_HEAD_NAME = `${APP_NAME}: About` as const
 
 export const MIN_VOLUME = 0
@@ -12,3 +13,5 @@ export const MAX_VOLUME = 1.5
 
 // @TODO (undg) 2024-09-12: MOVE IT TO CONFIG, or scan for the device
 export const WEBSOCKET_URL = 'ws://192.168.1.110:8448/api/v1/ws'
+
+export const TEST_ID = {}

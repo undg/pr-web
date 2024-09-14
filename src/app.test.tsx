@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from 'app'
-import { ABOUT_HEAD_NAME, CONTROLLER_HEAD_TITLE } from 'constant'
+import { ABOUT_HEAD_NAME, CONTROLLER_OUTPUT_HEAD_TITLE } from 'constant'
 import { renderWithProviders } from 'test-utils'
 
 describe('<App />', () => {
@@ -19,7 +19,7 @@ describe('<App />', () => {
       await waitFor(() => expect(screen.queryByTestId('loading-or-error')).not.toBeInTheDocument(), { timeout })
     }
 
-    await expect(screen.findByText(CONTROLLER_HEAD_TITLE)).resolves.toBeInTheDocument()
+    await expect(screen.findByText(CONTROLLER_OUTPUT_HEAD_TITLE)).resolves.toBeInTheDocument()
 
     await waitForLoad()
 
@@ -29,10 +29,10 @@ describe('<App />', () => {
 
     await expect(screen.findByText(ABOUT_HEAD_NAME)).resolves.toBeInTheDocument()
 
-    await userEvent.click(screen.getByTestId('goto-controller'))
+    await userEvent.click(screen.getByTestId('goto-output-devices'))
 
     await waitForLoad()
 
-    await expect(screen.findByText(CONTROLLER_HEAD_TITLE)).resolves.toBeInTheDocument()
+    await expect(screen.findByText(CONTROLLER_OUTPUT_HEAD_TITLE)).resolves.toBeInTheDocument()
   })
 })

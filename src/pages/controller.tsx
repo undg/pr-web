@@ -1,12 +1,11 @@
-import { Button } from 'components/button'
+import { useWebSocketApi } from 'api/use-web-socket-api'
 import Head from 'components/head'
 import { Slider } from 'components/slider'
-import { CONTROLLER_HEAD_TITLE, MAX_VOLUME, MIN_VOLUME } from 'constant'
-import { useEffect, type ReactElement, useCallback } from 'react'
-import { Link } from 'react-router-dom'
-import { useWebSocketApi } from 'api/use-web-socket-api'
+import { CONTROLLER_OUTPUT_HEAD_TITLE, MAX_VOLUME, MIN_VOLUME } from 'constant'
 import { useDebounce } from 'hooks/use-debounce'
+import { useCallback, useEffect } from 'react'
 
+import { TopNav } from 'components/top-nav'
 import { atom, useAtom } from 'jotai'
 import { useAtomDevtools } from 'jotai-devtools'
 
@@ -15,7 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
   volumeAtom.debugLabel = 'volumeAtom'
 }
 
-export default function Controller(): ReactElement {
+export const ControllerOutput: React.FC = () => {
   const [volume, setVolume] = useAtom(volumeAtom)
   useAtomDevtools(volumeAtom)
   const { sendMessage, lastMessage } = useWebSocketApi()
@@ -54,15 +53,8 @@ export default function Controller(): ReactElement {
 
   return (
     <div className='container mx-auto p-4'>
-      <Head title={CONTROLLER_HEAD_TITLE} />
-      <nav className='mb-8 flex justify-end gap-4'>
-        <Link to='/web/about' data-testid='goto-about'>
-          <Button variant='secondary'>About</Button>
-        </Link>
-        <Button onClick={handleRefresh} variant='secondary'>
-          Refresh
-        </Button>
-      </nav>
+      <Head title={CONTROLLER_OUTPUT_HEAD_TITLE} />
+      <TopNav />
       <main>
         <section className='mb-8'>
           <Slider
@@ -71,7 +63,6 @@ export default function Controller(): ReactElement {
             max={MAX_VOLUME}
             value={[volume ?? 0]}
             step={0.01}
-            onInput={console.log}
             onValueChange={handleVolumeChange}
           />
         </section>
@@ -79,3 +70,6 @@ export default function Controller(): ReactElement {
     </div>
   )
 }
+
+// @TODO (undg) 2024-09-14: Implemet Input controller
+export const ControllerInput = ControllerOutput

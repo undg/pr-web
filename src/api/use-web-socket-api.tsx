@@ -16,7 +16,14 @@ export const useWebSocketApi = () => {
   const [messageHistory, setMessageHistory] = useState<MessageEvent[]>([])
   const [status, setStatus] = useState<ConnectionStatus>('Closed')
 
-  const { lastMessage, readyState, sendMessage: sendMessageWs } = useWebSocket(WEBSOCKET_URL)
+  const {
+    lastMessage,
+    readyState,
+    sendMessage: sendMessageWs,
+  } = useWebSocket(WEBSOCKET_URL, {
+    shouldReconnect: () => true,
+    reconnectInterval: 1000,
+  })
 
   useEffect(() => {
     if (lastMessage) {
