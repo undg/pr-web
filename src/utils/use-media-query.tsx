@@ -1,6 +1,4 @@
 import { useLayoutEffect, useState } from 'react'
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
 
 export function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(() => matchMedia(query).matches)
@@ -20,8 +18,4 @@ export function useMediaQuery(query: string): boolean {
   }, [query])
 
   return matches
-}
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
 }

@@ -1,11 +1,28 @@
-// @TODO (undg) 2024-09-02: constants for now, config later
+export const MIN_VOLUME = 0
+/**
+ * Max volume 1.5 is 150%. Although you can set it as loud as you like,
+ * value above 2.0 (200%) can damage your speakers.
+ */
+export const MAX_VOLUME = 1.5
 
 export const APP_NAME = 'Pulse Remote'
 
-export const CONTROLLER_HEAD_TITLE = `${APP_NAME}: Controller` as const
+export const CONTROLLER_OUTPUT_HEAD_TITLE = `${APP_NAME}: Output Devices` as const
+export const CONTROLLER_INPUT_HEAD_TITLE = `${APP_NAME}: Input Devices` as const
 export const ABOUT_HEAD_NAME = `${APP_NAME}: About` as const
 
-export const MIN_VOLUME = 0
-export const MAX_VOLUME = 150
+export const dict = {
+  appName: 'Pulse Remote',
+  headerInput: 'Pulse Remote: Input',
+  headerOutput: 'Pulse Remote: Output',
+  headerAbout: 'Pulse Remote: About',
+  headerConfig: 'Pulse Remote: Config',
+} as const
 
-export const WEBSOCKET_URL = 'http://localhost:8448/api/v1/ws'
+export const testid = {
+  gotoOutputDevices: 'goto-output-devices',
+  gotoInputDevices: 'goto-input-devices',
+  gotoAbout: 'goto-about',
+  gotoConfig: 'goto-config',
+  loadingOrError: 'loading-or-error',
+} as const

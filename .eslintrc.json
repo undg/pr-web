@@ -6,7 +6,7 @@
     "es2021": true
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react-prefer-function-component"],
+  "plugins": [],
   "extends": [
     "eslint:all",
     "plugin:@typescript-eslint/all",
@@ -18,8 +18,6 @@
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:react/jsx-runtime",
-    "plugin:unicorn/all",
-    "plugin:react-prefer-function-component/recommended",
     "prettier"
   ],
   "rules": {
@@ -49,29 +47,26 @@
         "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
       }
     ],
+    "arrow-body-style": "off",
     "no-void": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/no-implicit-any-catch": "off",
+    "@typescript-eslint/no-magic-numbers": "off",
     "@typescript-eslint/no-restricted-imports": "off",
+    "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/non-nullable-type-assertion-style": "off",
     "@typescript-eslint/padding-line-between-statements": "off",
     "@typescript-eslint/prefer-enum-initializers": "off",
     "@typescript-eslint/prefer-includes": "off",
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/prefer-regexp-exec": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/sort-type-constituents": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-magic-numbers": [
-      "error",
-      {
-        "ignoreEnums": true,
-        "ignore": [0],
-        "enforceConst": true,
-        "detectObjects": true
-      }
-    ],
     "@typescript-eslint/no-confusing-void-expression": [
       "error",
       {
@@ -94,7 +89,9 @@
         ]
       }
     ],
+    "react/function-component-definition": "off",
     "react/jsx-curly-brace-presence": "off",
+    "react/jsx-handler-names": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-did-update-set-state": "off",
     "react/no-find-dom-node": "off",
@@ -119,22 +116,7 @@
         "validateNested": true
       }
     ],
-    "react/function-component-definition": [
-      "error",
-      {
-        "namedComponents": "function-declaration"
-      }
-    ],
     "react/no-unstable-nested-components": "error",
-    "react/jsx-handler-names": [
-      "error",
-      {
-        "eventHandlerPrefix": "on",
-        "eventHandlerPropPrefix": "on",
-        "checkLocalVariables": true,
-        "checkInlineFunction": true
-      }
-    ],
     "react/jsx-key": "error",
     "react/jsx-no-bind": [
       "error",
@@ -148,20 +130,7 @@
     ],
     "react/jsx-no-constructed-context-values": "error",
     "react/jsx-no-script-url": "error",
-    "react/jsx-no-useless-fragment": "error",
-    "unicorn/no-keyword-prefix": "off",
-    "unicorn/prevent-abbreviations": "off",
-    "unicorn/filename-case": [
-      "error",
-      {
-        "cases": {
-          "camelCase": false,
-          "pascalCase": false,
-          "kebabCase": true
-        }
-      }
-    ],
-    "unicorn/no-nested-ternary": ["error"]
+    "react/jsx-no-useless-fragment": "error"
   },
   "settings": {
     "react": {

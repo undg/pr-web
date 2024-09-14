@@ -20,7 +20,6 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'airbnb-typescript/base',
-        'plugin:unicorn/recommended',
         'prettier',
       ],
       rules: {

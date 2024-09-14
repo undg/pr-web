@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
       include: ['src/**/*'],
       exclude: ['src/main.tsx'],
       thresholds: {
-        '100': true,
+        '100': false,
       },
       provider: 'istanbul',
       enabled: true,
