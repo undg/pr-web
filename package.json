@@ -14,7 +14,7 @@
     "test:ci": "vitest run",
     "test:e2e": "pnpm preview:test 'cypress open'",
     "test:e2e:headless": "pnpm preview:test 'cypress run'",
-    "test:e2e:ci": "vite build && pnpm preview:test 'cypress run --record'",
+    "test:e2e:ci": "vite build && pnpm preview:test 'cypress run'",
     "format": "prettier -uw --cache --ignore-path .gitignore .",
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
