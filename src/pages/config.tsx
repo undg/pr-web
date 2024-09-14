@@ -1,5 +1,11 @@
+import { TopNav } from 'components/top-nav'
 import type { FC } from 'react'
 
 export const Config: FC = () => {
-  return <p>Config</p>
+  return (
+    <div>
+      <TopNav />
+      <div>Config</div>
+    </div>
+  )
 }
