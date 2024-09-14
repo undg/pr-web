@@ -19,6 +19,9 @@ importers:
       '@tanstack/react-query':
         specifier: 5.29.2
         version: 5.29.2(react@18.2.0)
+      '@testing-library/react-hooks':
+        specifier: ^8.0.1
+        version: 8.0.1(@types/react@18.2.76)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -58,6 +61,9 @@ importers:
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.3(ts-node@10.9.1(@types/node@20.2.3)(typescript@5.4.5)))
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@nabla/vite-plugin-eslint':
         specifier: 2.0.2
@@ -1727,6 +1733,23 @@ packages:
       jest:
         optional: true
       vitest:
+        optional: true
+
+  '@testing-library/react-hooks@8.0.1':
+    resolution:
+      { integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g== }
+    engines: { node: '>=12' }
+    peerDependencies:
+      '@types/react': ^16.9.0 || ^17.0.0
+      react: ^16.9.0 || ^17.0.0
+      react-dom: ^16.9.0 || ^17.0.0
+      react-test-renderer: ^16.9.0 || ^17.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react-dom:
+        optional: true
+      react-test-renderer:
         optional: true
 
   '@testing-library/react@15.0.1':
@@ -5122,6 +5145,13 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
+  react-error-boundary@3.1.4:
+    resolution:
+      { integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA== }
+    engines: { node: '>=10', npm: '>=6' }
+    peerDependencies:
+      react: '>=16.13.1'
+
   react-error-boundary@4.0.13:
     resolution:
       { integrity: sha512-b6PwbdSv8XeOSYvjt8LpgpKrZ0yGdtZokYwkwV2wlcZbxgopHX/hgPl5VgpnoVOWd868n1hktM8Qm4b+02MiLQ== }
@@ -6548,6 +6578,10 @@ packages:
       { integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g== }
     engines: { node: '>=12.20' }
 
+  zod@3.23.8:
+    resolution:
+      { integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g== }
+
 snapshots:
   '@aashutoshrathi/word-wrap@1.2.6': {}
 
@@ -7951,6 +7985,15 @@ snapshots:
       redent: 3.0.0
     optionalDependencies:
       vitest: 1.5.0(@types/node@20.2.3)(jsdom@24.0.0)(terser@5.14.2)
+
+  '@testing-library/react-hooks@8.0.1(@types/react@18.2.76)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.23.7
+      react: 18.2.0
+      react-error-boundary: 3.1.4(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.2.76
+      react-dom: 18.2.0(react@18.2.0)
 
   '@testing-library/react@15.0.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -11055,6 +11098,11 @@ snapshots:
       react: 18.2.0
       scheduler: 0.23.0
 
+  react-error-boundary@3.1.4(react@18.2.0):
+    dependencies:
+      '@babel/runtime': 7.23.7
+      react: 18.2.0
+
   react-error-boundary@4.0.13(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.23.7
@@ -12433,3 +12481,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.0.0: {}
+
+  zod@3.23.8: {}

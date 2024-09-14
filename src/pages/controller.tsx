@@ -2,7 +2,7 @@ import { useWebSocketApi } from 'api/use-web-socket-api'
 import Head from 'components/head'
 import { Slider } from 'components/slider'
 import { MAX_VOLUME, MIN_VOLUME, dict } from 'constant'
-import { useDebounce } from 'hooks/use-debounce'
+import { useDebounce } from 'utils/use-debounce'
 import { useCallback, useEffect } from 'react'
 
 import { TopNav } from 'components/top-nav'
