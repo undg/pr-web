@@ -1,7 +1,7 @@
 import { useWebSocketApi } from 'api/use-web-socket-api'
 import Head from 'components/head'
 import { Slider } from 'components/slider'
-import { CONTROLLER_OUTPUT_HEAD_TITLE, MAX_VOLUME, MIN_VOLUME } from 'constant'
+import { MAX_VOLUME, MIN_VOLUME, dict } from 'constant'
 import { useDebounce } from 'hooks/use-debounce'
 import { useCallback, useEffect } from 'react'
 
@@ -53,7 +53,7 @@ export const ControllerOutput: React.FC = () => {
 
   return (
     <div className='container mx-auto p-4'>
-      <Head title={CONTROLLER_OUTPUT_HEAD_TITLE} />
+      <Head title={dict.headerOutput} />
       <TopNav />
       <main>
         <section className='mb-8'>
