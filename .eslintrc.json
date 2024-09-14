@@ -64,6 +64,7 @@
     "@typescript-eslint/prefer-includes": "off",
     "@typescript-eslint/prefer-readonly-parameter-types": "off",
     "@typescript-eslint/prefer-regexp-exec": "off",
+    "@typescript-eslint/return-await": "off",
     "@typescript-eslint/sort-type-constituents": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/no-confusing-void-expression": [
