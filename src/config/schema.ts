@@ -6,7 +6,7 @@ export const ConfigSchema = z
     host: z.string(),
     port: z.number().int().positive(),
     endpoint: z.string().startsWith('/'),
-    serverUrl: z.string().url().optional(),
+    serverUrl: z.string().optional(),
   })
   .transform(({ host, port, endpoint }) => ({
     host,
