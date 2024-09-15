@@ -8,7 +8,7 @@ export const defaultConfig: Config = {
   hostname: window.location.hostname,
   port: '8448',
   endpoint: '/api/v1/ws',
-  serverUrl: 'ws://localhost:8448/api/v1/ws',
+  serverUrl: `ws://${window.location.hostname}:8448/api/v1/ws`,
 } as const
 
 export const configAtom = atomWithStorage<Config>('pr-web-config', defaultConfig)
