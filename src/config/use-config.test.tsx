@@ -6,7 +6,7 @@ describe('useConfig', () => {
     const { result } = renderHook(() => useConfig())
     const [defaultConfig] = result.current
     expect(defaultConfig).toEqual({
-      host: 'localhost',
+      hostname: 'localhost',
       port: '8448',
       endpoint: '/api/v1/ws',
       serverUrl: 'ws://localhost:8448/api/v1/ws',
@@ -26,7 +26,7 @@ describe('useConfig', () => {
     const [updatedConfig] = result.current
 
     expect(updatedConfig).to.eql({
-      host: 'localhost',
+      hostname: 'localhost',
       port: '9000',
       endpoint: '/api/v1/ws',
       serverUrl: 'ws://localhost:9000/api/v1/ws',

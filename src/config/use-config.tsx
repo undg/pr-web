@@ -4,12 +4,12 @@ import type { Config } from './schema'
 import { ConfigSchema } from './schema'
 import { useAtomDevtools } from 'jotai-devtools'
 
-const defaultConfig: Config = {
-  host: 'localhost',
+export const defaultConfig: Config = {
+  hostname: window.location.hostname,
   port: '8448',
   endpoint: '/api/v1/ws',
   serverUrl: 'ws://localhost:8448/api/v1/ws',
-}
+} as const
 
 export const configAtom = atomWithStorage<Config>('pr-web-config', defaultConfig)
 
