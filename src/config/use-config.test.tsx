@@ -7,7 +7,7 @@ describe('useConfig', () => {
     const [defaultConfig] = result.current
     expect(defaultConfig).toEqual({
       host: 'localhost',
-      port: 8448,
+      port: '8448',
       endpoint: '/api/v1/ws',
       serverUrl: 'ws://localhost:8448/api/v1/ws',
     })
@@ -18,7 +18,7 @@ describe('useConfig', () => {
 
     act(() => {
       const [, updateConfig] = result.current
-      updateConfig({ port: 9000 })
+      updateConfig({ port: '9000' })
     })
 
     rerender()
@@ -27,7 +27,7 @@ describe('useConfig', () => {
 
     expect(updatedConfig).to.eql({
       host: 'localhost',
-      port: 9000,
+      port: '9000',
       endpoint: '/api/v1/ws',
       serverUrl: 'ws://localhost:9000/api/v1/ws',
     })

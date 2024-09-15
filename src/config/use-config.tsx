@@ -6,7 +6,7 @@ import { useAtomDevtools } from 'jotai-devtools'
 
 const defaultConfig: Config = {
   host: 'localhost',
-  port: 8448,
+  port: '8448',
   endpoint: '/api/v1/ws',
   serverUrl: 'ws://localhost:8448/api/v1/ws',
 }
