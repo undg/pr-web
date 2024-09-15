@@ -29,7 +29,7 @@ export const Config: FC = () => {
       <TopNav />
       <div>
         <div>Config</div>
-        <input value={config.hostname} onChange={handleChange('host')} />
+        <input value={config.hostname} onChange={handleChange('hostname')} />
         <input value={config.port} onChange={handleChange('port')} />
         <input value={config.endpoint} onChange={handleChange('endpoint')} />
         <div>{config.serverUrl}</div>
