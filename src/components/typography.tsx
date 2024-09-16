@@ -1,16 +1,15 @@
-// https://ui.shadcn.com/docs/components/typography
 import type { FC, PropsWithChildren } from 'react'
 
 export const H1: FC<PropsWithChildren> = props => {
-  return <h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>{props.children}</h1>
+  return <h1 className='scroll-m-20 pb-8 text-3xl font-extrabold tracking-tight lg:text-5xl'>{props.children}</h1>
 }
 
 export const H2: FC<PropsWithChildren> = props => {
-  return <h2 className='first:mt- scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight'>{props.children}</h2>
+  return <h2 className='first:mt- scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight'>{props.children}</h2>
 }
 
 export const H3: FC<PropsWithChildren> = props => {
-  return <h3 className='scroll-m-20 text-2xl font-semibold tracking-tight'>{props.children}</h3>
+  return <h3 className='text-1xl scroll-m-20 font-semibold tracking-tight'>{props.children}</h3>
 }
 
 export const H4: FC<PropsWithChildren> = props => {

@@ -10,12 +10,12 @@ export const Layout: FC<PropsWithChildren<{ header?: string }>> = props => {
     <div
       className={cn(
         //
-        'flex h-full min-h-screen w-full justify-center bg-background py-8 text-foreground',
+        'flex h-full min-h-screen w-full justify-center bg-background text-foreground',
         theme === 'dark' && 'dark',
         theme === 'light' && 'light',
       )}
     >
-      <div className='w-full max-w-screen-lg bg-muted p-8'>
+      <div className='w-full max-w-screen-lg bg-muted p-8 pt-12 '>
         <H1>{props.header ?? ''}</H1>
         <TopNav />
         <main>{props.children}</main>
