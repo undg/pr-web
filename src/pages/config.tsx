@@ -1,6 +1,5 @@
 import { Button } from 'components/button'
-import Head from 'components/head'
-import { TopNav } from 'components/top-nav'
+import { Layout } from 'components/layout'
 import { defaultConfig, useConfig } from 'config/use-config'
 import { dict } from 'constant'
 import type { FC } from 'react'
@@ -24,9 +23,7 @@ export const Config: FC = () => {
   }
 
   return (
-    <div>
-      <Head title={dict.headerConfig} />
-      <TopNav />
+    <Layout header={dict.headerConfig}>
       <div>
         <div>Config</div>
         <input value={config.hostname} onChange={handleChange('hostname')} />
@@ -36,6 +33,6 @@ export const Config: FC = () => {
         <Button onClick={handleConfigDetect}>Auto detect</Button>
         <Button onClick={handleConfigReset}>Reset to default</Button>
       </div>
-    </div>
+    </Layout>
   )
 }
