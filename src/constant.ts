@@ -24,5 +24,6 @@ export const testid = {
   gotoInputDevices: 'goto-input-devices',
   gotoAbout: 'goto-about',
   gotoConfig: 'goto-config',
+  btnTheme: 'btn-theme',
   loadingOrError: 'loading-or-error',
 } as const
