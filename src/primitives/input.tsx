@@ -1,15 +1,17 @@
-import { Small } from 'components/typography'
+import { Muted, Small } from 'components/typography'
 import * as React from 'react'
 
 import { cn } from 'utils/cn'
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string
+  label?: string
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, error, ...props }, ref) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, error, label, ...props }, ref) => {
   return (
     <div>
+      {Boolean(label) && <Muted className='m-1'>{label}</Muted>}
       <input
         type={type}
         className={cn(
@@ -19,7 +21,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
         ref={ref}
         {...props}
       />
-      {Boolean(error) && <Small>{error}</Small>}
+      {Boolean(error) && (
+        <span className='bg-gray'>
+          <Small className='text-destructive'>{error}</Small>
+        </span>
+      )}
     </div>
   )
 })

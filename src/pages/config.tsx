@@ -1,7 +1,9 @@
 import { Button } from 'components/button'
 import { Layout } from 'components/layout'
+import { H3, Muted, P } from 'components/typography'
 import { defaultConfig, useConfig } from 'config/use-config'
 import { dict } from 'constant'
+import { Input } from 'primitives/input'
 import type { FC } from 'react'
 
 export const Config: FC = () => {
@@ -21,18 +23,26 @@ export const Config: FC = () => {
   const handleConfigReset = () => {
     updateConfig(defaultConfig)
   }
-
   return (
     <Layout header={dict.headerConfig}>
-      <div>
-        <div>Config</div>
-        <input value={config.hostname} onChange={handleChange('hostname')} />
-        <input value={config.port} onChange={handleChange('port')} />
-        <input value={config.endpoint} onChange={handleChange('endpoint')} />
-        <div>{config.serverUrl}</div>
-        <Button onClick={handleConfigDetect}>Auto detect</Button>
-        <Button onClick={handleConfigReset}>Reset to default</Button>
-      </div>
+      <section>
+        <H3>Config</H3>
+        <div className='flex justify-start'>
+          <Input label='hostname' value={config.hostname} onChange={handleChange('hostname')} />
+          <Input label='port' className='w-16' value={config.port} onChange={handleChange('port')} />
+          <Input label='endpoint' value={config.endpoint} onChange={handleChange('endpoint')} />
+        </div>
+        <P>Full serverUrl: </P>
+        <div className='mb-8 w-min rounded-lg bg-black px-3 py-1'>
+          <Muted className='mb-3 mt-2'>{config.serverUrl}</Muted>
+        </div>
+        <div className='flex justify-between gap-4'>
+          <Button variant='destructive' onClick={handleConfigReset}>
+            Reset to default
+          </Button>
+          <Button onClick={handleConfigDetect}>Auto detect</Button>
+        </div>
+      </section>
     </Layout>
   )
 }
