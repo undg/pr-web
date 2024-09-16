@@ -1,6 +1,6 @@
 import { Button } from 'components/button'
 import { Layout } from 'components/layout'
-import { H3, Muted, P } from 'components/typography'
+import { H3, P } from 'components/typography'
 import { defaultConfig, useConfig } from 'config/use-config'
 import { dict } from 'constant'
 import { Input } from 'primitives/input'
@@ -33,10 +33,8 @@ export const Config: FC = () => {
           <Input label='endpoint' value={config.endpoint} onChange={handleChange('endpoint')} />
         </div>
         <P>Full serverUrl: </P>
-        <div className='mb-8 w-min rounded-lg bg-black px-3 py-1'>
-          <Muted className='mb-3 mt-2'>{config.serverUrl}</Muted>
-        </div>
-        <div className='flex justify-between gap-4'>
+        <Input disabled value={config.serverUrl} />
+        <div className='mt-4 flex justify-between gap-4'>
           <Button variant='destructive' onClick={handleConfigReset}>
             Reset to default
           </Button>
