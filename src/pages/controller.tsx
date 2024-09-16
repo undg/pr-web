@@ -1,13 +1,11 @@
 import { useWebSocketApi } from 'api/use-web-socket-api'
-import Head from 'components/head'
+import { Layout } from 'components/layout'
 import { Slider } from 'components/slider'
 import { MAX_VOLUME, MIN_VOLUME, dict } from 'constant'
-import { useDebounce } from 'utils/use-debounce'
-import { useCallback, useEffect } from 'react'
-
-import { TopNav } from 'components/top-nav'
 import { atom, useAtom } from 'jotai'
 import { useAtomDevtools } from 'jotai-devtools'
+import { useCallback, useEffect } from 'react'
+import { useDebounce } from 'utils/use-debounce'
 
 export const volumeAtom = atom<number | null>(null)
 if (process.env.NODE_ENV !== 'production') {
@@ -52,22 +50,18 @@ export const ControllerOutput: React.FC = () => {
   )
 
   return (
-    <div className='container mx-auto p-4'>
-      <Head title={dict.headerOutput} />
-      <TopNav />
-      <main>
-        <section className='mb-8'>
-          <Slider
-            title='Volume'
-            min={MIN_VOLUME}
-            max={MAX_VOLUME}
-            value={[volume ?? 0]}
-            step={0.01}
-            onValueChange={handleVolumeChange}
-          />
-        </section>
-      </main>
-    </div>
+    <Layout header={dict.headerOutput}>
+      <section className='mb-8'>
+        <Slider
+          title='Volume'
+          min={MIN_VOLUME}
+          max={MAX_VOLUME}
+          value={[volume ?? 0]}
+          step={0.01}
+          onValueChange={handleVolumeChange}
+        />
+      </section>
+    </Layout>
   )
 }
 

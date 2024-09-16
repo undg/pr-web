@@ -1,14 +1,10 @@
-import Head from 'components/head'
-import { TopNav } from 'components/top-nav'
+import { Layout } from 'components/layout'
 import { dict } from 'constant'
 import type { ReactElement } from 'react'
 
 export default function About(): ReactElement {
   return (
-    <div>
-      <Head title={dict.headerAbout} />
-      <TopNav />
-
+    <Layout header={dict.headerAbout}>
       <section>
         <h2>What is Pulse Remote?</h2>
         <p>
@@ -31,6 +27,6 @@ export default function About(): ReactElement {
           Find us on GitHub: <a href='https://github.com/undg/pulse-remote'>github.com/undg/pulse-remote</a>
         </p>
       </section>
-    </div>
+    </Layout>
   )
 }
