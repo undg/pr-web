@@ -62,6 +62,7 @@ export const ControllerOutput: React.FC = () => {
           sink.volume = newValue[0].toString()
         }
       })
+      navigator.vibrate([10])
     },
     [updateSinks],
   )
