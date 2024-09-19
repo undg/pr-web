@@ -70,7 +70,11 @@ export const ControllerOutput: React.FC = () => {
     <Layout header={dict.headerOutput}>
       <section className='flex flex-col gap-8'>
         {sinks.map(sink => (
-          <div key={sink.name} className='grid-col-2 grid' style={{ gridTemplateColumns: 'minmax(auto, 300px) auto' }}>
+          <div
+            key={sink.name}
+            className='grid-col-2 grid gap-4'
+            style={{ gridTemplateColumns: 'minmax(auto, 30vw) auto' }}
+          >
             <Small>{sink.label}</Small>
             <Slider
               className='mb-8'
