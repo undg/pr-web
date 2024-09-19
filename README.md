@@ -2,7 +2,7 @@
 
 ## Pulse Remote Frontend
 
-React frontend for [go-prapi](https://github.com/undg/go-prapi) WebSocket server. Control Linux PC volume remotely.
+React frontend for [go-prapi](https://github.com/undg/go-prapi) (v0.0.25) WebSocket server. Control Linux PC volume remotely.
 
 ## Tech Stack
 
