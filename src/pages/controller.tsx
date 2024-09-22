@@ -94,7 +94,7 @@ export const ControllerOutput: React.FC = () => {
               data-testid={testid.btnMuteToggle}
               onClick={handleMuteToggle(sink.name)}
             >
-              {sink.muted ? <VolumeOff size='sm' color='red' /> : <Volume size='sm' />}
+              {sink.muted ? <VolumeOff color='red' /> : <Volume />}
             </Toggle>
             <Small className='self-end truncate text-right text-xs'>{sink.label}</Small>
             <div
