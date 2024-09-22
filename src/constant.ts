@@ -25,5 +25,6 @@ export const testid = {
   gotoAbout: 'goto-about',
   gotoConfig: 'goto-config',
   btnTheme: 'btn-theme',
+  btnMuteToggle: 'btn-mute-toggle',
   loadingOrError: 'loading-or-error',
 } as const
