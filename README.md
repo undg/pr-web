@@ -1,5 +1,8 @@
 # pr-web
 
+![Tests](https://github.com/undg/pr-web/actions/workflows/test.yml/badge.svg)
+![Code quality analysis](https://github.com/undg/pr-web/actions/workflows/codeql-analysis.yml/badge.svg)
+
 ## Pulse Remote Frontend
 
 React frontend for [go-prapi](https://github.com/undg/go-prapi) (v0.0.25) WebSocket server. Control Linux PC volume remotely.

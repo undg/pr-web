@@ -26,6 +26,9 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
+      # - name: Setup upterm session
+      #   uses: lhotari/action-upterm@v1
+
       - name: Install dependencies
         run: pnpm i && pnpm cypress install
 
