@@ -1,4 +1,4 @@
-import type { GetSinks, GetWsMessage } from 'api/types'
+import type { Status, GetWsMessage } from 'api/types'
 import { useWebSocketApi } from 'api/use-web-socket-api'
 import { Layout } from 'components/layout'
 import { Slider } from 'components/slider'
@@ -13,40 +13,43 @@ import { useCallback, useEffect } from 'react'
 import { cn } from 'utils/cn'
 import { useDebounce } from 'utils/use-debounce'
 
-export const sinksAtom = atom<GetSinks[]>([])
+export const statusAtom = atom<Status>()
 if (process.env.NODE_ENV !== 'production') {
-  sinksAtom.debugLabel = 'sinksAtom'
+  statusAtom.debugLabel = 'statusAtom'
 }
 
 export const ControllerOutput: React.FC = () => {
-  const [sinks, updateSinks] = useImmerAtom(sinksAtom)
-  useAtomDevtools(sinksAtom)
+  const [status, updateStatus] = useImmerAtom(statusAtom)
+  useAtomDevtools(statusAtom)
   const { sendMessage, lastMessage } = useWebSocketApi()
-  const debouncedSinks = useDebounce(sinks, 100)
+  const debouncedStatus = useDebounce(status, 100)
 
   // Send message to websocket, with debounde
   useEffect(() => {
-    for (const sink of debouncedSinks) {
-      sendMessage(JSON.stringify({ action: 'SetSink', payload: { name: sink.name, volume: sink.volume } }))
+    if (!debouncedStatus) {
+      return
     }
-  }, [debouncedSinks, sendMessage])
+    for (const output of debouncedStatus.outputs) {
+      sendMessage(JSON.stringify({ action: 'SetSink', payload: { name: output.name, volume: output.volume } }))
+    }
+  }, [debouncedStatus, sendMessage])
 
   // This useEffect hook handles incoming WebSocket messages
-  // It updates the sinks state when a 'GetSinks' action is received
+  // It updates the sinks state when a 'GetStatus' action is received
   useEffect(() => {
     if (lastMessage && typeof lastMessage.data === 'string') {
       const parsedMessage = JSON.parse(lastMessage.data) as GetWsMessage
-      updateSinks(draft => {
-        if (parsedMessage.action === 'GetSinks' && Array.isArray(parsedMessage.payload)) {
+      updateStatus(draft => {
+        if (parsedMessage.action === 'GetStatus' && !!parsedMessage.payload) {
           return parsedMessage.payload
         }
         return draft
       })
     }
-  }, [lastMessage, updateSinks])
+  }, [lastMessage, updateStatus])
 
   const handleRefresh = useCallback(() => {
-    sendMessage(JSON.stringify({ action: 'GetVolume' }))
+    sendMessage(JSON.stringify({ action: 'GetStatus' }))
   }, [sendMessage])
 
   useEffect(() => {
@@ -55,66 +58,67 @@ export const ControllerOutput: React.FC = () => {
 
   const handleVolumeChange = useCallback(
     (name: string) => (newValue: number[]) => {
-      updateSinks(draft => {
-        const sink = draft.find(s => s.name === name)
-        if (sink) {
-          sink.volume = newValue[0].toString()
+      updateStatus(draft => {
+        const output = draft?.outputs.find(o => o.name === name)
+        if (output) {
+          output.volume = newValue[0].toString()
         }
       })
       navigator.vibrate([10])
     },
-    [updateSinks],
+    [updateStatus],
   )
+
   const handleMuteToggle = useCallback(
     (name: string) => () => {
-      updateSinks(draft => {
-        const sink = draft.find(s => s.name === name)
-        if (sink) {
-          sink.muted = !sink.muted
+      updateStatus(draft => {
+        const output = draft?.outputs.find(o => o.name === name)
+        if (output) {
+          output.muted = !output.muted
         }
       })
       navigator.vibrate([10])
     },
-    [updateSinks],
+    [updateStatus],
   )
 
   return (
     <Layout header={dict.headerOutput}>
       <section className='flex flex-col gap-6 text-xl'>
-        {sinks.map(sink => (
+        {status?.outputs.map(output => (
           <div
-            key={sink.name}
+            key={output.name}
             className='grid items-center gap-x-4 gap-y-1'
             style={{ gridTemplateColumns: '2em auto', gridTemplateRows: 'repeat(1em)' }}
           >
             <Toggle
               variant='outline'
               size='sm'
-              pressed={sink.muted}
+              pressed={output.muted}
               data-testid={testid.btnMuteToggle}
-              onClick={handleMuteToggle(sink.name)}
+              onClick={handleMuteToggle(output.name)}
             >
-              {sink.muted ? <VolumeOff color='red' /> : <Volume />}
+              {output.muted ? <VolumeOff color='red' /> : <Volume />}
             </Toggle>
-            <Small className='self-end truncate text-right text-xs'>{sink.label}</Small>
+            <Small className='self-end truncate text-right text-xs'>{output.label}</Small>
             <div
               className={cn(
                 'text-green-500',
-                Number(sink.volume) >= 75 && 'text-orange-500',
-                Number(sink.volume) >= 100 && 'text-red-500',
+                Number(output.volume) >= 75 && 'text-orange-500',
+                Number(output.volume) >= 100 && 'text-red-500',
               )}
             >
-              {sink.volume}%
+              {output.volume}%
             </div>
             <Slider
               className='top-2 col-span-1 mb-4'
-              name={sink.label}
+              name={output.label}
               title='Volume'
               min={MIN_VOLUME}
               max={MAX_VOLUME}
-              value={[Number(sink.volume)]}
+              value={[Number(output.volume)]}
               step={1}
-              onValueChange={handleVolumeChange(sink.name)}
+              onValueChange={handleVolumeChange(output.name)}
             />
           </div>
         ))}
