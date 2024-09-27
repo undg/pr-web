@@ -209,9 +209,6 @@ importers:
       vite-plugin-pwa:
         specifier: 0.19.8
         version: 0.19.8(vite@5.2.8(@types/node@20.2.3)(terser@5.14.2))(workbox-build@7.0.0(@types/babel__core@7.20.5))(workbox-window@7.0.0)
-      vite-tsconfig-paths:
-        specifier: 4.3.2
-        version: 4.3.2(typescript@5.4.5)(vite@5.2.8(@types/node@20.2.3)(terser@5.14.2))
       vitest:
         specifier: 1.5.0
         version: 1.5.0(@types/node@20.2.3)(jsdom@24.0.0)(terser@5.14.2)
@@ -3641,10 +3638,6 @@ packages:
     resolution:
       { integrity: sha512-xYfnw62CKG8nLkZBfWbhWwDw02CHty86jfPcc2cr3ZfeuK9ysoVPPEUxf21bAD/rWAgk52SuBrLJlefNy8mvFg== }
 
-  globrex@0.1.2:
-    resolution:
-      { integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg== }
-
   gopd@1.0.1:
     resolution:
       { integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA== }
@@ -6006,17 +5999,6 @@ packages:
       '@swc/wasm':
         optional: true
 
-  tsconfck@3.0.3:
-    resolution:
-      { integrity: sha512-4t0noZX9t6GcPTfBAbIbbIU4pfpCwh0ueq3S4O/5qXI1VwK1outmxhe9dOiEWqMz3MW2LKgDTpqWV+37IWuVbA== }
-    engines: { node: ^18 || >=20 }
-    hasBin: true
-    peerDependencies:
-      typescript: ^5.0.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-
   tsconfig-paths@3.15.0:
     resolution:
       { integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg== }
@@ -6279,15 +6261,6 @@ packages:
       workbox-window: ^7.0.0
     peerDependenciesMeta:
       '@vite-pwa/assets-generator':
-        optional: true
-
-  vite-tsconfig-paths@4.3.2:
-    resolution:
-      { integrity: sha512-0Vd/a6po6Q+86rPlntHye7F31zA2URZMbH8M3saAZ/xR9QoGN/L21bxEGfXdWmFdNkqPpRdxFT7nmNe12e9/uA== }
-    peerDependencies:
-      vite: '*'
-    peerDependenciesMeta:
-      vite:
         optional: true
 
   vite@5.2.8:
@@ -9981,8 +9954,6 @@ snapshots:
 
   globjoin@0.1.4: {}
 
-  globrex@0.1.2: {}
-
   gopd@1.0.1:
     dependencies:
       get-intrinsic: 1.2.4
@@ -11950,10 +11921,6 @@ snapshots:
       yn: 3.1.1
     optional: true
 
-  tsconfck@3.0.3(typescript@5.4.5):
-    optionalDependencies:
-      typescript: 5.4.5
-
   tsconfig-paths@3.15.0:
     dependencies:
       '@types/json5': 0.0.29
@@ -12180,17 +12147,6 @@ snapshots:
       workbox-window: 7.0.0
     transitivePeerDependencies:
       - supports-color
-
-  vite-tsconfig-paths@4.3.2(typescript@5.4.5)(vite@5.2.8(@types/node@20.2.3)(terser@5.14.2)):
-    dependencies:
-      debug: 4.3.4(supports-color@8.1.1)
-      globrex: 0.1.2
-      tsconfck: 3.0.3(typescript@5.4.5)
-    optionalDependencies:
-      vite: 5.2.8(@types/node@20.2.3)(terser@5.14.2)
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
 
   vite@5.2.8(@types/node@20.2.3)(terser@5.14.2):
     dependencies:

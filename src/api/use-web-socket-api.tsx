@@ -1,6 +1,6 @@
-import { useConfig } from 'config/use-config'
 import { useCallback, useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
+import { useConfig } from '../config/use-config'
 
 const connectionStatus = {
   [ReadyState.CONNECTING]: 'Connecting',

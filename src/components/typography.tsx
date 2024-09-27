@@ -1,5 +1,5 @@
 import type { FC, PropsWithChildren } from 'react'
-import { cn } from 'utils/cn'
+import { cn } from '../utils/cn'
 
 export const H1: FC<PropsWithChildren<{ className?: string }>> = props => {
   return (

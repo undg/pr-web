@@ -1,5 +1,5 @@
-import { testid } from 'constant'
 import type { ReactElement } from 'react'
+import { testid } from '../constant'
 
 interface Properties {
   error?: Error

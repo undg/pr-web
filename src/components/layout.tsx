@@ -1,8 +1,8 @@
-import { useTheme } from 'config/use-theme'
 import type { FC, PropsWithChildren } from 'react'
-import { cn } from 'utils/cn'
 import { TopNav } from './top-nav'
 import { H1 } from './typography'
+import { useTheme } from '../config/use-theme'
+import { cn } from '../utils/cn'
 
 export const Layout: FC<PropsWithChildren<{ header?: string }>> = props => {
   const [theme] = useTheme()
