@@ -1,9 +1,9 @@
-import { Button } from 'components/button'
-import { Layout } from 'components/layout'
-import { H3, P } from 'components/typography'
-import { defaultConfig, useConfig } from 'config/use-config'
-import { dict } from 'constant'
-import { Input } from 'primitives/input'
+import { Button } from '../components/button'
+import { Layout } from '../components/layout'
+import { H3, P } from '../components/typography'
+import { defaultConfig, useConfig } from '../config/use-config'
+import { dict } from '../constant'
+import { Input } from '../primitives/input'
 import type { FC } from 'react'
 
 export const Config: FC = () => {

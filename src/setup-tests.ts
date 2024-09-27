@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import mediaQuery from 'css-mediaquery'
-import { DESKTOP_RESOLUTION_HEIGHT, DESKTOP_RESOLUTION_WIDTH } from 'test-utils'
 import 'whatwg-fetch'
+import { DESKTOP_RESOLUTION_WIDTH, DESKTOP_RESOLUTION_HEIGHT } from './test-utils'
 
 beforeAll(() => {
   Object.defineProperty(window, 'IS_REACT_ACT_ENVIRONMENT', {
