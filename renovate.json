@@ -3,12 +3,18 @@
   "extends": ["config:recommended"],
   "packageRules": [
     {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
       "groupName": "react core",
       "packageNames": ["@vitejs/plugin-react", "react", "react-dom", "@types/react", "@types/react-dom"]
     },
     {
       "groupName": "unit testing",
-      "packagePatterns": ["@testing-library", "vitest", "jsdom", "@vitest/coverage-istanbul"]
+      "packagePatterns": ["@testing-library", "vitest", "jsdom", "@vitest/coverage-istanbul"],
+      "automerge": true
     },
     {
       "groupName": "testing-library",
@@ -18,11 +24,13 @@
         "@testing-library/jest-dom",
         "@testing-library/react",
         "@testing-library/user-event"
-      ]
+      ],
+      "automerge": true
     },
     {
       "groupName": "e2e testing",
-      "packageNames": ["cypress", "@testing-library/cypress"]
+      "packageNames": ["cypress", "@testing-library/cypress"],
+      "automerge": true
     },
     {
       "groupName": "linters",
@@ -46,7 +54,8 @@
         "eslint-plugin-react",
         "eslint-plugin-react-hooks",
         "eslint-plugin-testing-library"
-      ]
+      ],
+      "automerge": true
     },
     {
       "groupName": "build tools",
