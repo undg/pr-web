@@ -1,28 +1,24 @@
-import { atom } from 'jotai'
 import { useAtomDevtools } from 'jotai-devtools'
 import { useImmerAtom } from 'jotai-immer'
+import { Volume, VolumeOff } from 'lucide-react'
 import { useCallback, useEffect } from 'react'
-import type { Status, GetWsMessage } from '../api/types'
 import { useWebSocketApi } from '../api/use-web-socket-api'
+import { statusAtom, useWebSocketStatusUpdate } from '../api/use-web-socket-status-update'
+import { Layout } from '../components/layout'
+import { Slider } from '../components/slider'
+import { Toggle } from '../components/toggle'
 import { Small } from '../components/typography'
-import { dict, testid, MIN_VOLUME, MAX_VOLUME } from '../constant'
+import { dict, MAX_VOLUME, MIN_VOLUME, testid } from '../constant'
 import { cn } from '../utils/cn'
 import { useDebounce } from '../utils/use-debounce'
-import { Layout } from '../components/layout'
-import { Toggle } from '../components/toggle'
-import { Volume, VolumeOff } from 'lucide-react'
-import { Slider } from '../components/slider'
-
-export const statusAtom = atom<Status>()
-if (process.env.NODE_ENV !== 'production') {
-  statusAtom.debugLabel = 'statusAtom'
-}
 
 export const ControllerOutput: React.FC = () => {
   const [status, updateStatus] = useImmerAtom(statusAtom)
   useAtomDevtools(statusAtom)
-  const { sendMessage, lastMessage } = useWebSocketApi()
+  const { sendMessage } = useWebSocketApi()
   const debouncedStatus = useDebounce(status, 100)
+
+  useWebSocketStatusUpdate()
 
   // Send message to websocket, with debounde
   useEffect(() => {
@@ -33,20 +29,6 @@ export const ControllerOutput: React.FC = () => {
       sendMessage(JSON.stringify({ action: 'SetSink', payload: { name: output.name, volume: output.volume } }))
     }
   }, [debouncedStatus, sendMessage])
-
-  // This useEffect hook handles incoming WebSocket messages
-  // It updates the sinks state when a 'GetStatus' action is received
-  useEffect(() => {
-    if (lastMessage && typeof lastMessage.data === 'string') {
-      const incomeMessage = JSON.parse(lastMessage.data) as GetWsMessage
-      updateStatus(draft => {
-        if (incomeMessage.action === 'BroadcastStatus' && !!incomeMessage.payload) {
-          return incomeMessage.payload
-        }
-        return draft
-      })
-    }
-  }, [lastMessage, updateStatus])
 
   const handleRefresh = useCallback(() => {
     sendMessage(JSON.stringify({ action: 'GetStatus' }))
