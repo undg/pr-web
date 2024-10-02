@@ -47,6 +47,7 @@ export type GetWsMessage = {
 type SendSink = {
   name: string
   volume: string
+  muted: boolean
 }
 
 export type SendWsMessate = {

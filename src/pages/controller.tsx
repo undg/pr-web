@@ -2,8 +2,8 @@ import { useAtomDevtools } from 'jotai-devtools'
 import { useImmerAtom } from 'jotai-immer'
 import { Volume, VolumeOff } from 'lucide-react'
 import { useCallback, useEffect } from 'react'
+import type { GetWsMessage, Status } from '../api/types'
 import { useWebSocketApi } from '../api/use-web-socket-api'
-import { statusAtom, useWebSocketStatusUpdate } from '../api/use-web-socket-status-update'
 import { Layout } from '../components/layout'
 import { Slider } from '../components/slider'
 import { Toggle } from '../components/toggle'
@@ -11,6 +11,12 @@ import { Small } from '../components/typography'
 import { dict, MAX_VOLUME, MIN_VOLUME, testid } from '../constant'
 import { cn } from '../utils/cn'
 import { useDebounce } from '../utils/use-debounce'
+import { atom } from 'jotai'
+
+export const statusAtom = atom<Status>()
+if (process.env.NODE_ENV !== 'production') {
+  statusAtom.debugLabel = 'statusAtom'
+}
 
 export const ControllerOutput: React.FC = () => {
   const [status, updateStatus] = useImmerAtom(statusAtom)
@@ -18,7 +24,20 @@ export const ControllerOutput: React.FC = () => {
   const { sendMessage } = useWebSocketApi()
   const debouncedStatus = useDebounce(status, 100)
 
-  useWebSocketStatusUpdate()
+  const { lastMessage } = useWebSocketApi()
+
+  // It updates status when backend server broadcasts new state
+  useEffect(() => {
+    if (lastMessage && typeof lastMessage.data === 'string') {
+      const incomeMessage = JSON.parse(lastMessage.data) as GetWsMessage
+      updateStatus(draft => {
+        if (incomeMessage.action === 'BroadcastStatus' && !!incomeMessage.payload) {
+          return incomeMessage.payload
+        }
+        return draft
+      })
+    }
+  }, [lastMessage, updateStatus])
 
   // Send message to websocket, with debounde
   useEffect(() => {
@@ -26,12 +45,17 @@ export const ControllerOutput: React.FC = () => {
       return
     }
     for (const output of debouncedStatus.outputs) {
-      sendMessage(JSON.stringify({ action: 'SetSink', payload: { name: output.name, volume: output.volume } }))
+      sendMessage(
+        JSON.stringify({
+          action: 'SetSink',
+          payload: { name: output.name, volume: output.volume, muted: output.muted },
+        }),
+      )
     }
   }, [debouncedStatus, sendMessage])
 
   const handleRefresh = useCallback(() => {
-    sendMessage(JSON.stringify({ action: 'GetStatus' }))
+    sendMessage(JSON.stringify({ action: 'BroadcastStatus' }))
   }, [sendMessage])
 
   useEffect(() => {
