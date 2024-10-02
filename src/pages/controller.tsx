@@ -38,10 +38,10 @@ export const ControllerOutput: React.FC = () => {
   // It updates the sinks state when a 'GetStatus' action is received
   useEffect(() => {
     if (lastMessage && typeof lastMessage.data === 'string') {
-      const parsedMessage = JSON.parse(lastMessage.data) as GetWsMessage
+      const incomeMessage = JSON.parse(lastMessage.data) as GetWsMessage
       updateStatus(draft => {
-        if (parsedMessage.action === 'GetStatus' && !!parsedMessage.payload) {
-          return parsedMessage.payload
+        if (incomeMessage.action === 'BroadcastStatus' && !!incomeMessage.payload) {
+          return incomeMessage.payload
         }
         return draft
       })

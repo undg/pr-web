@@ -1,6 +1,6 @@
 // @TODO (undg) 2024-09-19: generate those types on the BE or generate them from GetSchema API provided by the server.
 
-type Action = 'GetSinks' | 'GetStatus' | 'SetSinks' // and more
+type Action = 'GetSinks' | 'GetStatus' | 'SetSinks' | 'BroadcastStatus' // and more
 
 type Outputs = {
   /** uniq device index */
