@@ -2,7 +2,7 @@ import { useAtomDevtools } from 'jotai-devtools'
 import { useImmerAtom } from 'jotai-immer'
 import { Volume, VolumeOff } from 'lucide-react'
 import { useCallback, useEffect } from 'react'
-import type { GetWsMessage, Status } from '../api/types'
+import type { GetWsMessage, VolStatus } from '../api/types'
 import { useWebSocketApi } from '../api/use-web-socket-api'
 import { Layout } from '../components/layout'
 import { Slider } from '../components/slider'
@@ -13,47 +13,12 @@ import { cn } from '../utils/cn'
 import { useDebounce } from '../utils/use-debounce'
 import { atom } from 'jotai'
 
-export const statusAtom = atom<Status>()
+export const volStatusAtom = atom<VolStatus>()
 if (process.env.NODE_ENV !== 'production') {
-  statusAtom.debugLabel = 'statusAtom'
+  volStatusAtom.debugLabel = 'statusAtom'
 }
 
-export const ControllerOutput: React.FC = () => {
-  const [status, updateStatus] = useImmerAtom(statusAtom)
-  useAtomDevtools(statusAtom)
-  const { sendMessage } = useWebSocketApi()
-  const debouncedStatus = useDebounce(status, 100)
-
-  const { lastMessage } = useWebSocketApi()
-
-  // It updates status when backend server broadcasts new state
-  useEffect(() => {
-    if (lastMessage && typeof lastMessage.data === 'string') {
-      const incomeMessage = JSON.parse(lastMessage.data) as GetWsMessage
-      updateStatus(draft => {
-        if (incomeMessage.action === 'BroadcastStatus' && !!incomeMessage.payload) {
-          return incomeMessage.payload
-        }
-        return draft
-      })
-    }
-  }, [lastMessage, updateStatus])
-
-  // Send message to websocket, with debounde
-  useEffect(() => {
-    if (!debouncedStatus) {
-      return
-    }
-    for (const output of debouncedStatus.outputs) {
-      sendMessage(
-        JSON.stringify({
-          action: 'SetSink',
-          payload: { name: output.name, volume: output.volume, muted: output.muted },
-        }),
-      )
-    }
-  }, [debouncedStatus, sendMessage])
-
+const useFirstLoadUpdate = (sendMessage: (message: string) => void) => {
   const handleRefresh = useCallback(() => {
     sendMessage(JSON.stringify({ action: 'BroadcastStatus' }))
   }, [sendMessage])
@@ -61,10 +26,47 @@ export const ControllerOutput: React.FC = () => {
   useEffect(() => {
     handleRefresh()
   }, [handleRefresh])
+}
+
+export const ControllerOutput: React.FC = () => {
+  const [volStatus, updateVolStatus] = useImmerAtom(volStatusAtom)
+  useAtomDevtools(volStatusAtom)
+  const { lastMessage, sendMessage } = useWebSocketApi()
+  const debouncedVolStatus = useDebounce(volStatus, 100)
+
+  useFirstLoadUpdate(sendMessage)
+
+  // It updates status when backend server broadcasts new state
+  useEffect(() => {
+    if (lastMessage && typeof lastMessage.data === 'string') {
+      const incomeMessage = JSON.parse(lastMessage.data) as GetWsMessage
+      updateVolStatus(draft => {
+        if (incomeMessage.action === 'BroadcastStatus' && !!incomeMessage.payload) {
+          return incomeMessage.payload
+        }
+        return draft
+      })
+    }
+  }, [lastMessage, updateVolStatus])
+
+  // Send message to websocket, when debouncedVolStatus changes
+  useEffect(() => {
+    if (!debouncedVolStatus) {
+      return
+    }
+    for (const output of debouncedVolStatus.outputs) {
+      sendMessage(
+        JSON.stringify({
+          action: 'SetSink',
+          payload: { name: output.name, volume: output.volume, muted: output.muted },
+        }),
+      )
+    }
+  }, [debouncedVolStatus, sendMessage])
 
   const handleVolumeChange = useCallback(
     (name: string) => (newValue: number[]) => {
-      updateStatus(draft => {
+      updateVolStatus(draft => {
         const output = draft?.outputs.find(o => o.name === name)
         if (output) {
           output.volume = newValue[0].toString()
@@ -72,12 +74,12 @@ export const ControllerOutput: React.FC = () => {
       })
       navigator.vibrate([10])
     },
-    [updateStatus],
+    [updateVolStatus],
   )
 
   const handleMuteToggle = useCallback(
     (name: string) => () => {
-      updateStatus(draft => {
+      updateVolStatus(draft => {
         const output = draft?.outputs.find(o => o.name === name)
         if (output) {
           output.muted = !output.muted
@@ -85,13 +87,13 @@ export const ControllerOutput: React.FC = () => {
       })
       navigator.vibrate([10])
     },
-    [updateStatus],
+    [updateVolStatus],
   )
 
   return (
     <Layout header={dict.headerOutput}>
       <section className='flex flex-col gap-6 text-xl'>
-        {status?.outputs.map(output => (
+        {volStatus?.outputs.map(output => (
           <div
             key={output.name}
             className='grid items-center gap-x-4 gap-y-1'

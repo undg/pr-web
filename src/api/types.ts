@@ -23,7 +23,7 @@ type Apps = {
   muted: boolean
 }
 
-export type Status = {
+export type VolStatus = {
   outputs: Outputs[]
   apps: Apps[]
 }
@@ -40,7 +40,7 @@ export type GetSinks = {
 export type GetWsMessage = {
   action: Action
   status: number // 400x
-  payload?: Status
+  payload?: VolStatus
   error?: string
 }
 
