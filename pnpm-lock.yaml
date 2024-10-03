@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  headers-polyfill: 3.3.0
+  headers-polyfill: 4.0.3
 
 importers:
 
@@ -2996,8 +2996,8 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  headers-polyfill@3.3.0:
-    resolution: {integrity: sha512-5e57etwBpNcDc0b6KCVWEh/Ro063OxPvzVimUdM0/tsYM/T7Hfy3kknIGj78SFTOhNd8AZY41U8mOHoO4LzmIQ==}
+  headers-polyfill@4.0.3:
+    resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
 
   highlight.js@11.10.0:
     resolution: {integrity: sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==}
@@ -8394,7 +8394,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  headers-polyfill@3.3.0: {}
+  headers-polyfill@4.0.3: {}
 
   highlight.js@11.10.0: {}
 
@@ -9047,7 +9047,7 @@ snapshots:
       '@types/statuses': 2.0.4
       chalk: 4.1.2
       graphql: 16.8.1
-      headers-polyfill: 3.3.0
+      headers-polyfill: 4.0.3
       is-node-process: 1.2.0
       outvariant: 1.4.2
       path-to-regexp: 6.3.0

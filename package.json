@@ -110,7 +110,7 @@
   },
   "pnpm": {
     "overrides": {
-      "headers-polyfill": "3.3.0"
+      "headers-polyfill": "4.0.3"
     }
   }
 }
