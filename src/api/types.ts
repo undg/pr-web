@@ -1,6 +1,6 @@
 // @TODO (undg) 2024-09-19: generate those types on the BE or generate them from GetSchema API provided by the server.
 
-type Action = 'GetSinks' | 'GetStatus' | 'SetSinks' // and more
+type Action = 'GetSinks' | 'GetStatus' | 'SetSinks' | 'BroadcastStatus' // and more
 
 type Outputs = {
   /** uniq device index */
@@ -23,7 +23,7 @@ type Apps = {
   muted: boolean
 }
 
-export type Status = {
+export type VolStatus = {
   outputs: Outputs[]
   apps: Apps[]
 }
@@ -40,13 +40,14 @@ export type GetSinks = {
 export type GetWsMessage = {
   action: Action
   status: number // 400x
-  payload?: Status
+  payload?: VolStatus
   error?: string
 }
 
 type SendSink = {
   name: string
   volume: string
+  muted: boolean
 }
 
 export type SendWsMessate = {
