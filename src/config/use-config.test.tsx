@@ -13,7 +13,7 @@ describe('useConfig', () => {
     })
   })
 
-  test('update config prettier', async () => {
+  test('update config port', async () => {
     const { result, rerender } = renderHook(() => useConfig())
 
     act(() => {
