@@ -15,7 +15,7 @@ export const Layout: FC<PropsWithChildren<{ header?: string }>> = props => {
         theme === 'light' && 'light',
       )}
     >
-      <div className='w-full max-w-screen-lg bg-muted p-8 pt-12 '>
+      <div className='w-full max-w-screen-lg bg-muted p-8 pt-12'>
         <H1>{props.header ?? ''}</H1>
         <TopNav />
         <main>{props.children}</main>

@@ -83,11 +83,19 @@ export const ControllerOutput: React.FC = () => {
         const output = draft?.outputs.find(o => o.name === name)
         if (output) {
           output.muted = !output.muted
+
+          sendMessage(
+            JSON.stringify({
+              action: 'SetMuted',
+              payload: { name: output.name, muted: output.muted },
+            }),
+          )
         }
       })
+
       navigator.vibrate([10])
     },
-    [updateVolStatus],
+    [updateVolStatus, sendMessage],
   )
 
   return (
@@ -121,7 +129,7 @@ export const ControllerOutput: React.FC = () => {
             <Slider
               className='top-2 col-span-1 mb-4'
               name={output.label}
-              title='Volume'
+              title={output.label}
               min={MIN_VOLUME}
               max={MAX_VOLUME}
               value={[Number(output.volume)]}
