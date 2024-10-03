@@ -14,7 +14,7 @@
     "test:e2e": "pnpm preview:test 'cypress open'",
     "test:e2e:headless": "pnpm preview:test 'cypress run'",
     "test:e2e:ci": "vite build && pnpm preview:test 'cypress run'",
-    "format": "prettier -uw --cache --ignore-path .gitignore .",
+    "format": "prettier -uw --cache --ignore-path .gitignore --ignore-path .prettierignore .",
     "run-tsc": "tsc",
     "run-eslint": "eslint --cache --fix --ignore-path .gitignore --ext .ts,.tsx .",
     "run-stylelint": "stylelint --cache --fix --ignore-path .gitignore **/*.css",
