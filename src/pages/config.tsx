@@ -1,13 +1,16 @@
+import type { FC } from 'react'
+import { useVolStatus } from '../api/use-vol-status'
 import { Button } from '../components/button'
 import { Layout } from '../components/layout'
-import { H3, P } from '../components/typography'
+import { H3, Muted, P, Small } from '../components/typography'
 import { defaultConfig, useConfig } from '../config/use-config'
 import { dict } from '../constant'
 import { Input } from '../primitives/input'
-import type { FC } from 'react'
 
 export const Config: FC = () => {
   const [config, updateConfig] = useConfig()
+  const { volStatus } = useVolStatus()
+
   const handleChange = (type: keyof typeof config) => (e: React.ChangeEvent<HTMLInputElement>) => {
     updateConfig({ [type]: e.currentTarget.value })
   }
@@ -39,6 +42,35 @@ export const Config: FC = () => {
             Reset to default
           </Button>
           <Button onClick={handleConfigDetect}>Auto detect</Button>
+        </div>
+      </section>
+      <section>
+        <H3>Server info</H3>
+        <div className='grid grid-cols-2 gap-2'>
+          <div className='flex flex-col'>
+            <Muted>Version</Muted>
+            <Small>{volStatus?.buildInfo.gitVersion}</Small>
+          </div>
+          <div className='flex flex-col'>
+            <Muted>Commit SHA</Muted>
+            <Small>{volStatus?.buildInfo.gitCommit}</Small>
+          </div>
+          <div className='flex flex-col'>
+            <Muted>Platform</Muted>
+            <Small>{volStatus?.buildInfo.platform}</Small>
+          </div>
+          <div className='flex flex-col'>
+            <Muted>Build Date</Muted>
+            <Small>{volStatus?.buildInfo.buildDate}</Small>
+          </div>
+          <div className='flex flex-col'>
+            <Muted>Go Version</Muted>
+            <Small>{volStatus?.buildInfo.goVersion}</Small>
+          </div>
+          <div className='flex flex-col'>
+            <Muted>Compiler</Muted>
+            <Small>{volStatus?.buildInfo.compiler}</Small>
+          </div>
         </div>
       </section>
     </Layout>

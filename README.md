@@ -5,7 +5,7 @@
 
 ## Pulse Remote Frontend
 
-React frontend for [go-prapi](https://github.com/undg/go-prapi) (v0.0.30) websocket server.
+React frontend for [go-prapi](https://github.com/undg/go-prapi) (v0.1.0) websocket server.
 
 Control Linux PC sound remotely from your phone.
 
