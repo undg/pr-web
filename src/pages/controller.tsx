@@ -1,5 +1,5 @@
-import { Volume, VolumeOff } from 'lucide-react'
-import { useCallback } from 'react'
+import { ArrowRight, Volume, VolumeOff } from 'lucide-react'
+import { Fragment, useCallback } from 'react'
 import { useVolStatus } from '../api/use-vol-status'
 import { useWebSocketApi } from '../api/use-web-socket-api'
 import { Layout } from '../components/layout'
@@ -85,6 +85,43 @@ export const ControllerOutput: React.FC = () => {
               step={1}
               onValueChange={handleVolumeChange(output.name)}
             />
+            {volStatus.apps.map(
+              app =>
+                app.outputId === output.id && (
+                  <Fragment key={app.id}>
+                    <div className='ml-4 flex h-full items-end justify-end border border-b-foreground border-l-foreground'>
+                      <ArrowRight />
+                    </div>
+                    <div
+                      className='grid items-center gap-x-4 gap-y-1'
+                      style={{ gridTemplateColumns: '2em auto', gridTemplateRows: 'repeat(1em)' }}
+                    >
+                      <Toggle variant='outline' size='sm' pressed={app.muted} data-testid={testid.btnMuteToggle}>
+                        {app.muted ? <VolumeOff color='red' /> : <Volume />}
+                      </Toggle>
+                      <Small className='self-end truncate text-right text-xs'>{app.label}</Small>
+                      <div
+                        className={cn(
+                          'text-green-500',
+                          Number(app.volume) >= 75 && 'text-orange-500',
+                          Number(app.volume) >= 100 && 'text-red-500',
+                        )}
+                      >
+                        {app.volume}%
+                      </div>
+                      <Slider
+                        className='top-2 col-span-1 mb-4'
+                        name={app.label}
+                        title={app.label}
+                        min={MIN_VOLUME}
+                        max={MAX_VOLUME}
+                        value={[Number(app.volume)]}
+                        step={1}
+                      />
+                    </div>
+                  </Fragment>
+                ),
+            )}
           </div>
         ))}
       </section>
