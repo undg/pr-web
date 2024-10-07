@@ -27,9 +27,20 @@ type Apps = {
   muted: boolean
 }
 
+type BuildInfo = {
+  gitVersion: string
+  gitCommit: string
+  buildDate: string
+  goVersion: string
+  compiler: string
+  platform: string
+}
+
 export type VolStatus = {
   outputs: Outputs[]
   apps: Apps[]
+  /** Backend server metadata */
+  buildInfo: BuildInfo
 }
 
 export type GetSinks = {
