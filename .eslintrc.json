@@ -116,6 +116,7 @@
     "react/no-will-update-set-state": "off",
     "react/prefer-es6-class": "off",
     "react/prefer-stateless-function": "off",
+    "react/prop-types": "off",
     "react/require-default-props": "off",
     "react/require-render-return": "off",
     "react/sort-comp": "off",

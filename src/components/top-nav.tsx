@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from './button'
 import { Settings, Info, Volume2, Mic, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../config/use-theme'
 import { testid } from '../constant'
+import { Button } from '../primitives/button'
 
 export const TopNav: FC = () => {
   const [theme, setTheme] = useTheme()

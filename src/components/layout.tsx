@@ -1,6 +1,6 @@
 import type { FC, PropsWithChildren } from 'react'
 import { TopNav } from './top-nav'
-import { H1 } from './typography'
+import { H1 } from '../primitives/typography'
 import { useTheme } from '../config/use-theme'
 import { cn } from '../utils/cn'
 

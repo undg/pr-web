@@ -1,13 +1,9 @@
-import { Volume, VolumeOff } from 'lucide-react'
-import { useCallback } from 'react'
+import { Fragment, useCallback } from 'react'
 import { useVolStatus } from '../api/use-vol-status'
 import { useWebSocketApi } from '../api/use-web-socket-api'
 import { Layout } from '../components/layout'
-import { Slider } from '../components/slider'
-import { Toggle } from '../components/toggle'
-import { Small } from '../components/typography'
-import { dict, MAX_VOLUME, MIN_VOLUME, testid } from '../constant'
-import { cn } from '../utils/cn'
+import { VolumeSlider } from '../components/volume-slider'
+import { dict } from '../constant'
 
 export const ControllerOutput: React.FC = () => {
   const { volStatus, updateVolStatus } = useVolStatus()
@@ -51,41 +47,32 @@ export const ControllerOutput: React.FC = () => {
     <Layout header={dict.headerOutput}>
       <section className='flex flex-col gap-6 text-xl'>
         {volStatus?.outputs.map(output => (
-          <div
-            key={output.name}
-            className='grid items-center gap-x-4 gap-y-1'
-            style={{ gridTemplateColumns: '2em auto', gridTemplateRows: 'repeat(1em)' }}
+          <VolumeSlider
+            key={output.id}
+            muted={output.muted}
+            volume={output.volume}
+            label={output.label}
+            onMuteChange={handleMuteToggle(output.name)}
+            onValueChange={handleVolumeChange(output.name)}
           >
-            <Toggle
-              variant='outline'
-              size='sm'
-              pressed={output.muted}
-              data-testid={testid.btnMuteToggle}
-              onClick={handleMuteToggle(output.name)}
-            >
-              {output.muted ? <VolumeOff color='red' /> : <Volume />}
-            </Toggle>
-            <Small className='self-end truncate text-right text-xs'>{output.label}</Small>
-            <div
-              className={cn(
-                'text-green-500',
-                Number(output.volume) >= 75 && 'text-orange-500',
-                Number(output.volume) >= 100 && 'text-red-500',
-              )}
-            >
-              {output.volume}%
-            </div>
-            <Slider
-              className='top-2 col-span-1 mb-4'
-              name={output.label}
-              title={output.label}
-              min={MIN_VOLUME}
-              max={MAX_VOLUME}
-              value={[Number(output.volume)]}
-              step={1}
-              onValueChange={handleVolumeChange(output.name)}
-            />
-          </div>
+            {volStatus.apps.map(
+              app =>
+                app.outputId === output.id && (
+                  <Fragment key={app.id}>
+                    <div className='relative ml-4 flex h-full items-end justify-end'>
+                      <span className='absolute bottom-1 h-full w-full border border-b-foreground border-l-foreground' />
+                    </div>
+                    <VolumeSlider
+                      muted={app.muted}
+                      label={app.label}
+                      volume={app.volume}
+                      onMuteChange={() => {}}
+                      onValueChange={() => {}}
+                    />
+                  </Fragment>
+                ),
+            )}
+          </VolumeSlider>
         ))}
       </section>
     </Layout>
