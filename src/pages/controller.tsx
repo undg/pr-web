@@ -1,4 +1,3 @@
-import { ArrowRight } from 'lucide-react'
 import { Fragment, useCallback } from 'react'
 import { useVolStatus } from '../api/use-vol-status'
 import { useWebSocketApi } from '../api/use-web-socket-api'
@@ -60,8 +59,8 @@ export const ControllerOutput: React.FC = () => {
               app =>
                 app.outputId === output.id && (
                   <Fragment key={app.id}>
-                    <div className='ml-4 flex h-full items-end justify-end border border-b-foreground border-l-foreground'>
-                      <ArrowRight />
+                    <div className='relative ml-4 flex h-full items-end justify-end'>
+                      <span className='absolute bottom-1 h-full w-full border border-b-foreground border-l-foreground' />
                     </div>
                     <VolumeSlider
                       muted={app.muted}

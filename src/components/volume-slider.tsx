@@ -7,6 +7,7 @@ import { Small } from '../primitives/typography'
 
 export const VolumeSlider: React.FC<{
   children?: React.ReactNode
+  className?: string
   muted: boolean
   label: string
   volume: string
@@ -16,7 +17,7 @@ export const VolumeSlider: React.FC<{
 }> = props => {
   return (
     <div
-      className='grid items-center gap-x-4 gap-y-1'
+      className={cn('grid items-center gap-x-4 gap-y-0', props.className)}
       style={{ gridTemplateColumns: '2em auto', gridTemplateRows: 'repeat(1em)' }}
     >
       <Toggle
