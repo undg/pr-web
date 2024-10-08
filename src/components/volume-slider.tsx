@@ -1,9 +1,9 @@
 import { Volume, VolumeOff } from 'lucide-react'
 import { MAX_VOLUME, MIN_VOLUME, testid } from '../constant'
 import { cn } from '../utils/cn'
-import { Slider } from './slider'
-import { Toggle } from './toggle'
-import { Small } from './typography'
+import { Slider } from '../primitives/slider'
+import { Toggle } from '../primitives/toggle'
+import { Small } from '../primitives/typography'
 
 export const VolumeSlider: React.FC<{
   children?: React.ReactNode

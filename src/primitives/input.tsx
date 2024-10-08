@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Muted, Small } from '../components/typography'
+import { Muted, Small } from './typography'
 import { cn } from '../utils/cn'
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
