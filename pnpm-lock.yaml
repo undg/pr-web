@@ -21,8 +21,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(@types/react-dom@18.3.0)(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-query':
-        specifier: 5.59.3
-        version: 5.59.3(react@18.3.1)
+        specifier: 5.59.6
+        version: 5.59.6(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -1517,11 +1517,11 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1 || >= 4.0.0-alpha.20'
 
-  '@tanstack/query-core@5.59.0':
-    resolution: {integrity: sha512-WGD8uIhX6/deH/tkZqPNcRyAhDUqs729bWKoByYHSogcshXfFbppOdTER5+qY7mFvu8KEFJwT0nxr8RfPTVh0Q==}
+  '@tanstack/query-core@5.59.6':
+    resolution: {integrity: sha512-g58YTHe4ClRrjJ50GY9fas/0zARJVozY0Hs+hcSBOmwZaeKY+to0/LX8wKnnH/EJiLYcC1sHmE11CAS3ncfZBg==}
 
-  '@tanstack/react-query@5.59.3':
-    resolution: {integrity: sha512-FbzaQ6mQGQstj0z6B91yoUPzoc3nnU2tLkYZvmFSKWN5qj9kPTPsAbGGmQXn2NDj0nWhhAl+wOWWwSvsRqSN7Q==}
+  '@tanstack/react-query@5.59.6':
+    resolution: {integrity: sha512-sGg2sNKg8cYf6aS1dzDf4weN+Vt9PfUu+0btwerrbtYysdNBbcGD4rPe9jhPgMtpDDlvi4cbLv+j1Qo814Kf+Q==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -6586,11 +6586,11 @@ snapshots:
       mini-svg-data-uri: 1.4.4
       tailwindcss: 3.4.13(ts-node@10.9.1(@types/node@20.12.7)(typescript@5.6.3))
 
-  '@tanstack/query-core@5.59.0': {}
+  '@tanstack/query-core@5.59.6': {}
 
-  '@tanstack/react-query@5.59.3(react@18.3.1)':
+  '@tanstack/react-query@5.59.6(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.59.0
+      '@tanstack/query-core': 5.59.6
       react: 18.3.1
 
   '@testing-library/cypress@10.0.2(cypress@13.15.0)':
