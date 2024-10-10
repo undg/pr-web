@@ -74,4 +74,4 @@ export type Message =
       action: 'SetSinkInputMuted'
       payload: { id: number; muted: boolean }
     }
-  | { action: 'BroadcastStatus' }
+  | { action: 'GetStatus' }

@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const useFirstLoadUpdate = (sendMessage: (message: Message) => void) => {
   const handleRefresh = useCallback(() => {
-    const message: Message = { action: 'BroadcastStatus' }
+    const message: Message = { action: 'GetStatus' }
     sendMessage(message)
   }, [sendMessage])
 
@@ -26,7 +26,7 @@ export const useVolumeStatus = () => {
   const [volStatus, updateVolStatus] = useImmerAtom(volStatusAtom)
   useAtomDevtools(volStatusAtom)
   const { lastMessage, sendMessage } = useWebSocketApi()
-  const debouncedVolStatus = useDebounce(volStatus, 15)
+  const debouncedVolStatus = useDebounce(volStatus, 150)
 
   useFirstLoadUpdate(sendMessage)
 
@@ -45,11 +45,7 @@ export const useVolumeStatus = () => {
 
   // Send SetSinkVolume message to websocket, when debouncedVolStatus changes
   useEffect(() => {
-    debouncedVolStatus?.outputs.forEach((output, i) => {
-      if (output.volume === volStatus?.outputs[i].volume) {
-        return
-      }
-
+    debouncedVolStatus?.outputs.forEach(output => {
       sendMessage({
         action: 'SetSinkVolume',
         payload: { name: output.name, volume: output.volume },
@@ -59,11 +55,7 @@ export const useVolumeStatus = () => {
 
   // Send SetSinkInputVolume message to websocket, when debouncedVolStatus changes
   useEffect(() => {
-    debouncedVolStatus?.apps.forEach((app, i) => {
-      if (app.volume === volStatus?.apps[i].volume) {
-        return
-      }
-
+    debouncedVolStatus?.apps.forEach(app => {
       sendMessage({
         action: 'SetSinkInputVolume',
         payload: { id: app.id, volume: app.volume },
