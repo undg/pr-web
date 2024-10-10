@@ -1,9 +1,7 @@
 // @TODO (undg) 2024-09-19: generate those types on the BE or generate them from GetSchema API provided by the server.
 
-type ActionIn = 'GetSinks' | 'GetStatus' | 'SetSinks' | 'BroadcastStatus'
+type ActionIn = 'GetStatus' | 'GetSinks' | 'GetCards' | 'GetSchema' | 'GetBuildInfo' | 'GetOutputs'
 // and more
-
-type ActionOut = 'SetSinks' | 'SetMuded'
 
 type Outputs = {
   /** uniq device index */
@@ -59,13 +57,21 @@ export type GetWsMessage = {
   error?: string
 }
 
-type SendSink = {
-  name: string
-  volume: string
-  muted: boolean
-}
-
-export type SendWsMessage = {
-  action: ActionOut
-  payload: SendSink
-}
+export type Message =
+  | {
+      action: 'SetSinkVolume'
+      payload: { name: string; volume: string }
+    }
+  | {
+      action: 'SetSinkMuted'
+      payload: { name: string; muted: boolean }
+    }
+  | {
+      action: 'SetSinkInputVolume'
+      payload: { id: number; volume: string }
+    }
+  | {
+      action: 'SetSinkInputMuted'
+      payload: { id: number; muted: boolean }
+    }
+  | { action: 'BroadcastStatus' }
