@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useConfig } from '../config/use-config'
+import type { Message } from './types'
 
 const connectionStatus = {
   [ReadyState.CONNECTING]: 'Connecting',
@@ -36,7 +37,7 @@ export const useWebSocketApi = () => {
     setStatus(connectionStatus[readyState])
   }, [readyState])
 
-  const sendMessage = useCallback((message: string) => sendMessageWs(message), [sendMessageWs])
+  const sendMessage = useCallback((message: Message) => sendMessageWs(JSON.stringify(message)), [sendMessageWs])
 
   return { messageHistory, sendMessage, status, lastMessage }
 }

@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useVolStatus } from '../api/use-vol-status'
+import { useVolumeStatus } from '../api/use-vol-status'
 import { Button } from '../primitives/button'
 import { Layout } from '../components/layout'
 import { H3, Muted, P, Small } from '../primitives/typography'
@@ -9,7 +9,7 @@ import { Input } from '../primitives/input'
 
 export const Config: FC = () => {
   const [config, updateConfig] = useConfig()
-  const { volStatus } = useVolStatus()
+  const { volStatus } = useVolumeStatus()
 
   const handleChange = (type: keyof typeof config) => (e: React.ChangeEvent<HTMLInputElement>) => {
     updateConfig({ [type]: e.currentTarget.value })

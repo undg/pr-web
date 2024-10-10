@@ -1,15 +1,15 @@
 import { Fragment, useCallback } from 'react'
-import { useVolStatus } from '../api/use-vol-status'
+import { useVolumeStatus } from '../api/use-vol-status'
 import { useWebSocketApi } from '../api/use-web-socket-api'
 import { Layout } from '../components/layout'
 import { VolumeSlider } from '../components/volume-slider'
 import { dict } from '../constant'
 
 export const ControllerOutput: React.FC = () => {
-  const { volStatus, updateVolStatus } = useVolStatus()
+  const { volStatus, updateVolStatus } = useVolumeStatus()
   const { sendMessage } = useWebSocketApi()
 
-  const handleVolumeChange = useCallback(
+  const handleSinkVolumeChange = useCallback(
     (name: string) => (newValue: number[]) => {
       updateVolStatus(draft => {
         const output = draft?.outputs.find(o => o.name === name)
@@ -22,19 +22,49 @@ export const ControllerOutput: React.FC = () => {
     [updateVolStatus],
   )
 
-  const handleMuteToggle = useCallback(
+  const handleSinkMuteToggle = useCallback(
     (name: string) => () => {
       updateVolStatus(draft => {
         const output = draft?.outputs.find(o => o.name === name)
         if (output) {
           output.muted = !output.muted
 
-          sendMessage(
-            JSON.stringify({
-              action: 'SetMuted',
-              payload: { name: output.name, muted: output.muted },
-            }),
-          )
+          sendMessage({
+            action: 'SetSinkMuted',
+            payload: { name: output.name, muted: output.muted },
+          })
+        }
+      })
+
+      navigator.vibrate([10])
+    },
+    [updateVolStatus, sendMessage],
+  )
+
+  const handleSinkInputVolumeChange = useCallback(
+    (id: number) => (newValue: number[]) => {
+      updateVolStatus(draft => {
+        const output = draft?.apps.find(o => o.id === id)
+        if (output) {
+          output.volume = newValue[0].toString()
+        }
+      })
+      navigator.vibrate([10])
+    },
+    [updateVolStatus],
+  )
+
+  const handleSinkInputMuteToggle = useCallback(
+    (id: number) => () => {
+      updateVolStatus(draft => {
+        const app = draft?.apps.find(o => o.id === id)
+        if (app) {
+          app.muted = !app.muted
+
+          sendMessage({
+            action: 'SetSinkInputMuted',
+            payload: { id: app.id, muted: app.muted },
+          })
         }
       })
 
@@ -52,8 +82,8 @@ export const ControllerOutput: React.FC = () => {
             muted={output.muted}
             volume={output.volume}
             label={output.label}
-            onMuteChange={handleMuteToggle(output.name)}
-            onValueChange={handleVolumeChange(output.name)}
+            onMuteChange={handleSinkMuteToggle(output.name)}
+            onValueChange={handleSinkVolumeChange(output.name)}
           >
             {volStatus.apps.map(
               app =>
@@ -66,8 +96,8 @@ export const ControllerOutput: React.FC = () => {
                       muted={app.muted}
                       label={app.label}
                       volume={app.volume}
-                      onMuteChange={() => {}}
-                      onValueChange={() => {}}
+                      onMuteChange={handleSinkInputMuteToggle(app.id)}
+                      onValueChange={handleSinkInputVolumeChange(app.id)}
                     />
                   </Fragment>
                 ),
