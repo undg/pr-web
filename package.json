@@ -75,7 +75,7 @@
     "css-mediaquery": "0.1.2",
     "husky": "9.1.7",
     "jsdom": "27.4.0",
-    "lint-staged": "16.4.0",
+    "lint-staged": "17.5.1",
     "msw": "2.15.0",
     "npm-run-all2": "8.0.4",
     "postcss": "8.5.25",
