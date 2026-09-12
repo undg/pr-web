@@ -51,7 +51,7 @@
     "react-dom": "18.3.1",
     "react-router-dom": "7.18.2",
     "react-use-websocket": "4.13.0",
-    "tailwind-merge": "^2.5.2",
+    "tailwind-merge": "^3.0.0",
     "tailwindcss-animate": "^1.0.7",
     "vite-plugin-pwa": "^1.0.0",
     "zod": "^4.0.0"
@@ -80,9 +80,9 @@
     "npm-run-all2": "8.0.4",
     "postcss": "8.5.25",
     "quicktype": "^23.0.170",
-    "tailwindcss": "3.4.19",
-    "typescript": "5.9.3",
-    "vite": "5.4.21",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.0",
     "vitest": "3.2.7",
     "whatwg-fetch": "3.6.20"
   },
